@@ -16,7 +16,7 @@
 
 package com.duckduckgo.lint.ui
 
-import com.android.tools.lint.client.api.UElementHandler
+import com.android.tools.lint.checks.DataFlowAnalyzer
 import com.android.tools.lint.detector.api.Category
 import com.android.tools.lint.detector.api.Detector
 import com.android.tools.lint.detector.api.Implementation
@@ -26,33 +26,52 @@ import com.android.tools.lint.detector.api.Scope
 import com.android.tools.lint.detector.api.Severity
 import com.android.tools.lint.detector.api.SourceCodeScanner
 import com.android.tools.lint.detector.api.TextFormat
-import com.duckduckgo.lint.ui.NoStyleAppliedToDesignSystemComponentDetector.Companion
 import com.intellij.psi.PsiMethod
 import org.jetbrains.uast.UCallExpression
-import org.jetbrains.uast.UClass
-import org.jetbrains.uast.UElement
-import org.jetbrains.uast.ULiteralExpression
-import java.util.*
+import org.jetbrains.uast.UMethod
+import org.jetbrains.uast.getParentOfType
 
 @Suppress("UnstableApiUsage")
-class NoAlertDialogDetector : Detector(), SourceCodeScanner {
+class NoDesignSystemDialogDetector : Detector(), SourceCodeScanner {
 
-    override fun getApplicableMethodNames() = listOf("setView", "create")
+    override fun getApplicableConstructorTypes(): List<String> {
+        return listOf(
+            APP_COMPAT_ALERT_DIALOG_BUILDER,
+            ALERT_DIALOG_BUILDER,
+            MATERIAL_ALERT_DIALOG_BUILDER
+        )
+    }
 
-    override fun visitMethodCall(
+    override fun visitConstructor(
         context: JavaContext,
         node: UCallExpression,
-        method: PsiMethod
+        constructor: PsiMethod
     ) {
-        val evaluator = context.evaluator
-        if (!evaluator.methodMatches(method, MATERIAL_ALERT_DIALOG_BUILDER, true)) {
+        var isShowCalled = false
+        val method = node.getParentOfType(UMethod::class.java, true) ?: return
+        val name = constructor.containingClass?.qualifiedName ?: return
+
+        if (name != APP_COMPAT_ALERT_DIALOG_BUILDER){
             return
         }
-        context.report(
-            issue = NO_DESIGN_SYSTEM_DIALOG,
-            location = context.getNameLocation(method),
-            message = NO_DESIGN_SYSTEM_DIALOG.getExplanation(TextFormat.RAW)
-        )
+
+        method.accept(object : DataFlowAnalyzer(listOf(node)) {
+            override fun receiver(call: UCallExpression) {
+                if (call.methodName == "show") {
+                    isShowCalled = true
+                }
+            }
+        })
+
+        if (isShowCalled){
+            context.report(
+                issue = NO_DESIGN_SYSTEM_DIALOG,
+                location = context.getNameLocation(method),
+                message = NO_DESIGN_SYSTEM_DIALOG.getExplanation(TextFormat.RAW)
+            )
+        }
+
+
     }
 
     companion object {
@@ -72,8 +91,8 @@ class NoAlertDialogDetector : Detector(), SourceCodeScanner {
                 severity = Severity.ERROR,
                 androidSpecific = true,
                 implementation = Implementation(
-                    NoAlertDialogDetector::class.java,
-                    Scope.RESOURCE_FILE_SCOPE
+                    NoDesignSystemDialogDetector::class.java,
+                    Scope.JAVA_FILE_SCOPE
                 )
             )
     }

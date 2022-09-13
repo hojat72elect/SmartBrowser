@@ -87,4 +87,5 @@ class NoFragmentDetectorTest {
             .run()
             .expectClean()
     }
+
 }

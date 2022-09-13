@@ -146,10 +146,22 @@ class TextAlertDialog(val builder: Builder) : DialogFragment() {
             return this
         }
 
+        fun setPositiveButton(text: String): Builder {
+            positiveButtonText = text
+            return this
+        }
+
         fun setNegativeButton(
             @StringRes textId: Int
         ): Builder {
             negativeButtonText = context.getText(textId)
+            return this
+        }
+
+        fun setNegativeButton(
+            text: String
+        ): Builder {
+            negativeButtonText = text
             return this
         }
 

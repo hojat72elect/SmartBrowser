@@ -145,12 +145,23 @@ class RadioListAlertDialog(val builder: Builder) : DialogFragment() {
             return this
         }
 
-        fun setOptions(
-            @StringRes stackedButtonTextId: List<Int>,
+        fun setOptionIds(
+            @StringRes optionListId: List<Int>,
             selectedItem: Int = 0
         ): Builder {
-            stackedButtonTextId.forEach {
+            optionListId.forEach {
                 optionList.add(context.getText(it))
+            }
+            selectedOption = selectedItem
+            return this
+        }
+
+        fun setOptions(
+            options: List<String>,
+            selectedItem: Int = 0
+        ): Builder {
+            options.forEach {
+                optionList.add(it)
             }
             selectedOption = selectedItem
             return this

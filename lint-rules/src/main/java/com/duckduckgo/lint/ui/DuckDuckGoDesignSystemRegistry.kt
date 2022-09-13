@@ -21,7 +21,7 @@ import com.android.tools.lint.client.api.Vendor
 import com.android.tools.lint.detector.api.CURRENT_API
 import com.android.tools.lint.detector.api.Issue
 import com.duckduckgo.lint.ui.DeprecatedAndroidButtonUsedInXmlDetector.Companion.DEPRECATED_BUTTON_IN_XML
-import com.duckduckgo.lint.ui.NoAlertDialogDetector.Companion.NO_DESIGN_SYSTEM_DIALOG
+import com.duckduckgo.lint.ui.NoDesignSystemDialogDetector.Companion.NO_DESIGN_SYSTEM_DIALOG
 import com.duckduckgo.lint.ui.NoStyleAppliedToDesignSystemComponentDetector.Companion.STYLE_IN_DESIGN_SYSTEM_COMPONENT
 
 @Suppress("UnstableApiUsage")
@@ -38,7 +38,7 @@ class DuckDuckGoDesignSystemRegistry : IssueRegistry() {
 
     override val vendor = Vendor(
         vendorName = "DuckDuckGo Design System",
-        identifier = "com.duckduckgo:lint:ui",
+        identifier = "com.duckduckgo.lint:ui",
         feedbackUrl = "https://app.asana.com/0/1202857801505092/1202858029631618",
         contact = "https://github.com/duckduckgo/android"
     )

@@ -81,7 +81,7 @@ class DialogsFragment : Fragment() {
                         .setMessage(R.string.text_dialog_message)
                         .setPositiveButton(R.string.text_dialog_positive)
                         .setNegativeButton(R.string.text_dialog_negative)
-                        .setOptions(listOf(R.string.text_dialog_option, R.string.text_dialog_option, R.string.text_dialog_option))
+                        .setOptionIds(listOf(R.string.text_dialog_option, R.string.text_dialog_option, R.string.text_dialog_option))
                         .addEventListener(object : RadioListAlertDialog.EventListener() {
                             override fun onRadioItemSelected(selectedItem: Int) {
                                 Snackbar.make(it, "Radio Button $selectedItem selected", Snackbar.LENGTH_SHORT).show()

@@ -38,6 +38,8 @@ import com.duckduckgo.app.global.extensions.historicalExitReasonsByProcessName
 import com.duckduckgo.app.global.formatters.time.model.TimePassed
 import com.duckduckgo.appbuildconfig.api.AppBuildConfig
 import com.duckduckgo.di.scopes.ActivityScope
+import com.duckduckgo.mobile.android.ui.view.dialog.TextAlertDialog
+import com.duckduckgo.mobile.android.ui.view.dialog.TextAlertDialog.EventListener
 import com.duckduckgo.mobile.android.ui.view.rightDrawable
 import com.duckduckgo.mobile.android.vpn.AppTpVpnFeature
 import com.duckduckgo.mobile.android.vpn.R
@@ -561,19 +563,25 @@ class VpnDiagnosticsActivity : DuckDuckGoActivity(), CoroutineScope by MainScope
             R.id.appExitHistory -> {
                 val history = retrieveHistoricalCrashInfo()
 
-                AlertDialog.Builder(this)
+                TextAlertDialog.Builder(this)
                     .setTitle(R.string.atp_AppExitsReasonsTitle)
-                    .setMessage(history.toString())
-                    .setPositiveButton("OK") { _, _ -> }
-                    .setNeutralButton("Share") { _, _ ->
-                        val intent =
-                            Intent(Intent.ACTION_SEND).also {
-                                it.type = "text/plain"
-                                it.putExtra(Intent.EXTRA_TEXT, history.toString())
-                                it.putExtra(Intent.EXTRA_SUBJECT, "Share VPN exit reasons")
+                    .setMessage(history.toString()
+                    .setPositiveButton("OK")
+                    .setNegativeButton("Share")
+                    .addEventListener(object : EventListener(){
+                        override fun onNegativeButtonClicked() {
+                            super.onPositiveButtonClicked(){
+                                val intent =
+                                    Intent(Intent.ACTION_SEND).also {
+                                        it.type = "text/plain"
+                                        it.putExtra(Intent.EXTRA_TEXT, history.toString())
+                                        it.putExtra(Intent.EXTRA_SUBJECT, "Share VPN exit reasons")
+                                    }
+                                startActivity(Intent.createChooser(intent, "Share"))
                             }
-                        startActivity(Intent.createChooser(intent, "Share"))
+                        }
                     }
+                    .build()
                     .show()
                 true
             }

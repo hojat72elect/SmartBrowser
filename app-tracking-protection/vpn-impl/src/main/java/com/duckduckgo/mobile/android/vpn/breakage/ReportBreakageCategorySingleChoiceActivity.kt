@@ -30,6 +30,8 @@ import com.duckduckgo.anvil.annotations.InjectWith
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.duckduckgo.di.scopes.ActivityScope
 import com.duckduckgo.di.scopes.VpnScope
+import com.duckduckgo.mobile.android.ui.view.dialog.RadioListAlertDialog
+import com.duckduckgo.mobile.android.ui.view.dialog.RadioListAlertDialog.EventListener
 import com.duckduckgo.mobile.android.ui.viewbinding.viewBinding
 import com.duckduckgo.mobile.android.vpn.R
 import com.duckduckgo.mobile.android.vpn.breakage.ReportBreakageCategorySingleChoiceViewModel.Command
@@ -90,20 +92,25 @@ class ReportBreakageCategorySingleChoiceActivity : DuckDuckGoActivity() {
     private fun configureListeners() {
         val categories = viewModel.shuffledCategories.map { getString(it.category) }.toTypedArray()
         binding.categoriesSelection.setOnClickListener {
-            AlertDialog.Builder(this)
-                .setTitle(getString(R.string.atp_ReportBreakageCategoriesTitle))
-                .setSingleChoiceItems(categories, viewModel.indexSelected) { _, newIndex ->
-                    viewModel.onCategoryIndexChanged(newIndex)
-                }
-                .setPositiveButton(getString(android.R.string.yes)) { dialog, _ ->
-                    viewModel.onCategoryAccepted()
-                    dialog.dismiss()
-                }
-                .setNegativeButton(getString(android.R.string.no)) { dialog, _ ->
-                    viewModel.onCategorySelectionCancelled()
-                    dialog.dismiss()
-                }
-                .show()
+            supportFragmentManager?.let { fragmentManager ->
+                RadioListAlertDialog.Builder(this)
+                    .setTitle(getString(R.string.atp_ReportBreakageCategoriesTitle))
+                    .setOptions(categories.toList(), viewModel.indexSelected)
+                    .setPositiveButton(android.R.string.yes)
+                    .setNegativeButton(android.R.string.no)
+                    .addEventListener(object : EventListener() {
+                        override fun onPositiveButtonClicked(selectedItem: Int) {
+                            viewModel.onCategoryIndexChanged(selectedItem)
+                            viewModel.onCategoryAccepted()
+                        }
+
+                        override fun onNegativeButtonClicked() {
+                            viewModel.onCategorySelectionCancelled()
+                        }
+                    })
+                    .build()
+                    .show(fragmentManager, RadioListAlertDialog.TAG_RADIO_LIST_ALERT_DIALOG)
+            }
         }
         binding.ctaNextFormSubmit.setOnClickListener { viewModel.onSubmitPressed() }
     }
@@ -153,14 +160,16 @@ class ReportBreakageCategorySingleChoiceActivity : DuckDuckGoActivity() {
         binding.categoriesSelection.setText(category)
         binding.otherCategoryDescription.visibility = if (viewState.indexSelected == 8) View.VISIBLE else View.GONE
         binding.ctaNextFormSubmit.isEnabled = viewState.submitAllowed
-
     }
 
     companion object {
 
         private const val APP_PACKAGE_ID_EXTRA = "APP_PACKAGE_ID_EXTRA"
 
-        fun intent(context: Context, brokenApp: BrokenApp): Intent {
+        fun intent(
+            context: Context,
+            brokenApp: BrokenApp
+        ): Intent {
 
             return Intent(context, ReportBreakageCategorySingleChoiceActivity::class.java).apply {
                 putExtra(APP_PACKAGE_ID_EXTRA, brokenApp)
