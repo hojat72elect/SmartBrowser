@@ -62,7 +62,7 @@ class FireDialog(
     private val settingsDataStore: SettingsDataStore,
     private val userEventsStore: UserEventsStore,
     private val appCoroutineScope: CoroutineScope
-) : BottomSheetDialog(context, R.style.FireDialog), CoroutineScope by MainScope() {
+) : BottomSheetDialog(context), CoroutineScope by MainScope() {
 
     private lateinit var binding: SheetFireClearDataBinding
     private lateinit var fireCtaBinding: IncludeDaxDialogCtaBinding

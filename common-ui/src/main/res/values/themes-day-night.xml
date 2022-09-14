@@ -33,6 +33,7 @@
     is where we override or define default styles for views and text appearance attributes. -->
     <style name="Base.Theme.DuckDuckGo" parent="Platform.Theme.DuckDuckGo">
         <!--Material type attributes-->
+        <!--Text styles -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.DuckDuckGo.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.DuckDuckGo.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.DuckDuckGo.Headline3</item>
@@ -44,6 +45,11 @@
         <item name="textAppearanceButton1">@style/TextAppearance.DuckDuckGo.Button1</item>
         <item name="textAppearanceButton2">@style/TextAppearance.DuckDuckGo.Button2</item>
         <item name="textAppearanceCaption">@style/TextAppearance.DuckDuckGo.Caption</item>
+
+        <!-- Shapes -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.DuckDuckgo.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.DuckDuckgo.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.DuckDuckgo.LargeComponent</item>
 
         <!--Component styles-->
         <item name="bottomSheetDialogTheme">@style/Widget.DuckDuckGo.BottomSheetDialog</item>
@@ -78,6 +84,22 @@
         <item name="colorOnBackground">@color/brownishGrayTwo</item>
         <item name="colorOnSurface">@color/almostBlackDark</item>
         <item name="colorOnError">@color/white</item>
+    </style>
+
+    <!--Shape  styles-->
+    <style name="ShapeAppearance.DuckDuckgo.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="ShapeAppearance.DuckDuckgo.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.DuckDuckgo.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
 </resources>

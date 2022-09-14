@@ -37,7 +37,7 @@
         <item name="android:colorEdgeEffect">@color/newBlack</item>
 
         <!-- Old System Components (will be refactored soon) -->
-        <item name="bottomSheetDialogTheme">@style/BottomSheetDialog</item>
+        <item name="bottomSheetDialogTheme">@style/Widget.DuckDuckGo.BottomSheetDialog</item>
         <item name="actionOverflowMenuStyle">@style/PopUpOverflowMenu</item>
         <item name="actionOverflowButtonStyle">@style/PopUpOverflowButton</item>
         <item name="snackbarButtonStyle">@style/snackbarButtonStyle</item>
@@ -397,14 +397,6 @@
     <style name="Theme.AndroidVpn.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
 
     <style name="Theme.AndroidVpn.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
-
-    <style name="BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
-    </style>
-
-    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="behavior_peekHeight">512dp</item>
-    </style>
 
     <style name="RadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:textColor">?attr/normalTextColor</item>

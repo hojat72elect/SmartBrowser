@@ -93,13 +93,23 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="Widget.DuckDuckGo.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
-        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    <style name="Widget.DuckDuckGo.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.DuckDuckGo.BottomSheet.Modal</item>
     </style>
 
-    <style name="Widget.DuckDuckGo.BottomSheet.Model" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="behavior_peekHeight">512dp</item>
+    <style name="Widget.DuckDuckGo.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearance">@style/ShapeAppearance.DuckDuckgo.MediumComponent</item>
     </style>
+
+<!--    <style name="FireDialog" parent="@style/Theme.Design.BottomSheetDialog">-->
+<!--        <item name="android:windowIsFloating">false</item>-->
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+<!--        <item name="bottomSheetStyle">@style/FireDialogStyle</item>-->
+<!--    </style>-->
+
+<!--    <style name="FireDialogStyle" parent="@style/Widget.Design.BottomSheet.Modal">-->
+<!--        <item name="android:background">@android:color/transparent</item>-->
+<!--    </style>-->
 
     <style name="Widget.DuckDuckGo.AutoCompleteTextView" parent="Widget.AppCompat.AutoCompleteTextView">
         <item name="android:textCursorDrawable">@drawable/text_cursor</item>
