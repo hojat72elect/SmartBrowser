@@ -144,9 +144,16 @@ class StackedAlertDialog(val builder: Builder) : DialogFragment() {
             return this
         }
 
-        fun setStackedButtons(@StringRes stackedButtonTextId: List<Int>): Builder {
+        fun setStackedButtonsResIds(@StringRes stackedButtonTextId: List<Int>): Builder {
             stackedButtonTextId.forEach {
                 stackedButtonList.add(context.getText(it))
+            }
+            return this
+        }
+
+        fun setStackedButtons(stackedButtons: List<String>): Builder {
+            stackedButtons.forEach {
+                stackedButtonList.add(it)
             }
             return this
         }

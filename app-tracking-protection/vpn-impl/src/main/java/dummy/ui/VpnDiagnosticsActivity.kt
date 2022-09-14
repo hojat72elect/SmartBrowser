@@ -38,6 +38,7 @@ import com.duckduckgo.app.global.extensions.historicalExitReasonsByProcessName
 import com.duckduckgo.app.global.formatters.time.model.TimePassed
 import com.duckduckgo.appbuildconfig.api.AppBuildConfig
 import com.duckduckgo.di.scopes.ActivityScope
+import com.duckduckgo.mobile.android.ui.view.dialog.StackedAlertDialog
 import com.duckduckgo.mobile.android.ui.view.dialog.TextAlertDialog
 import com.duckduckgo.mobile.android.ui.view.dialog.TextAlertDialog.EventListener
 import com.duckduckgo.mobile.android.ui.view.rightDrawable
@@ -560,17 +561,17 @@ class VpnDiagnosticsActivity : DuckDuckGoActivity(), CoroutineScope by MainScope
                 updateStatus()
                 true
             }
+
             R.id.appExitHistory -> {
                 val history = retrieveHistoricalCrashInfo()
-
-                TextAlertDialog.Builder(this)
-                    .setTitle(R.string.atp_AppExitsReasonsTitle)
-                    .setMessage(history.toString()
-                    .setPositiveButton("OK")
-                    .setNegativeButton("Share")
-                    .addEventListener(object : EventListener(){
-                        override fun onNegativeButtonClicked() {
-                            super.onPositiveButtonClicked(){
+                supportFragmentManager?.let { fragmentManager ->
+                    TextAlertDialog.Builder(this)
+                        .setTitle(R.string.atp_AppExitsReasonsTitle)
+                        .setMessage(history.toString())
+                        .setPositiveButton("OK")
+                        .setNegativeButton("Share")
+                        .addEventListener(object : EventListener() {
+                            override fun onNegativeButtonClicked() {
                                 val intent =
                                     Intent(Intent.ACTION_SEND).also {
                                         it.type = "text/plain"
@@ -579,34 +580,43 @@ class VpnDiagnosticsActivity : DuckDuckGoActivity(), CoroutineScope by MainScope
                                     }
                                 startActivity(Intent.createChooser(intent, "Share"))
                             }
-                        }
-                    }
-                    .build()
-                    .show()
+                        })
+                        .build()
+                        .show(fragmentManager, TextAlertDialog.TAG_TEXT_ALERT_DIALOG)
+                }
                 true
             }
+
             R.id.vpnRestarts -> {
                 val restarts = retrieveRestartsHistoryInfo()
 
-                AlertDialog.Builder(this)
-                    .setTitle(R.string.atp_AppRestartsTitle)
-                    .setMessage(restarts.toString())
-                    .setPositiveButton("OK") { _, _ -> }
-                    .setNegativeButton("Clean") { _, _ ->
-                        runBlocking(Dispatchers.IO) { repository.deleteVpnRestartHistory() }
-                    }
-                    .setNeutralButton("Share") { _, _ ->
-                        val intent =
-                            Intent(Intent.ACTION_SEND).also {
-                                it.type = "text/plain"
-                                it.putExtra(Intent.EXTRA_TEXT, restarts.toString())
-                                it.putExtra(Intent.EXTRA_SUBJECT, "Share VPN exit reasons")
+                supportFragmentManager?.let { fragmentManager ->
+                    StackedAlertDialog.Builder(this)
+                        .setTitle(R.string.atp_AppExitsReasonsTitle)
+                        .setMessage(restarts.toString())
+                        .setStackedButtons(listOf("OK", "Clean", "Share"))
+                        .addEventListener(object : StackedAlertDialog.EventListener() {
+                            override fun onButtonClicked(position: Int) {
+                                when(position){
+                                    1 ->                    runBlocking(Dispatchers.IO) { repository.deleteVpnRestartHistory() }
+                                    2 -> {
+                                        val intent =
+                                            Intent(Intent.ACTION_SEND).also {
+                                                it.type = "text/plain"
+                                                it.putExtra(Intent.EXTRA_TEXT, restarts.toString())
+                                                it.putExtra(Intent.EXTRA_SUBJECT, "Share VPN exit reasons")
+                                            }
+                                        startActivity(Intent.createChooser(intent, "Share"))
+                                    }
+                                }
                             }
-                        startActivity(Intent.createChooser(intent, "Share"))
-                    }
-                    .show()
+                        })
+                        .build()
+                        .show(fragmentManager, TextAlertDialog.TAG_TEXT_ALERT_DIALOG)
+                }
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -122,7 +122,7 @@ class DialogsFragment : Fragment() {
                         .setHeaderImageResource(R.drawable.ic_dax_icon)
                         .setTitle(R.string.text_dialog_title)
                         .setMessage(R.string.text_dialog_message)
-                        .setStackedButtons(
+                        .setStackedButtonsResIds(
                             listOf(
                                 R.string.text_dialog_positive,
                                 R.string.text_dialog_positive,
@@ -145,7 +145,7 @@ class DialogsFragment : Fragment() {
                         StackedAlertDialog.Builder(requireContext())
                             .setTitle(R.string.text_dialog_title)
                             .setMessage(R.string.text_dialog_message)
-                            .setStackedButtons(
+                            .setStackedButtonsResIds(
                                 listOf(
                                     R.string.text_dialog_positive,
                                     R.string.text_dialog_positive,
