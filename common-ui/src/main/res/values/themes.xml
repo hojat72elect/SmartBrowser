@@ -19,7 +19,13 @@
 
     <style name="SplashScreen" parent="AppTheme.Light"/>
 
-    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light.Bridge"/>
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.Light.Bridge">
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.DuckDuckgo.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.DuckDuckgo.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.DuckDuckgo.LargeComponent</item>
+
+    </style>
 
     <style name="AppTheme" parent="BaseAppTheme">
 
@@ -162,11 +168,11 @@
         <item name="autofillCredentialListSubtitleColor">@color/paleBrownishGray</item>
     </style>
 
-    <style name="AppTheme.Dark" parent="AppTheme.BaseDark" />
+    <style name="AppTheme.Dark" parent="AppTheme.BaseDark"/>
 
-    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="AppTheme.Dark.Transparent">
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -394,9 +400,9 @@
         <item name="colorAccent">@color/cornflowerGreen</item>
     </style>
 
-    <style name="Theme.AndroidVpn.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
+    <style name="Theme.AndroidVpn.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar"/>
 
-    <style name="Theme.AndroidVpn.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark" />
+    <style name="Theme.AndroidVpn.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark"/>
 
     <style name="RadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:textColor">?attr/normalTextColor</item>

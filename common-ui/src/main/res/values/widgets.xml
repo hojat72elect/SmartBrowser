@@ -95,13 +95,15 @@
 
     <style name="Widget.DuckDuckGo.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Widget.DuckDuckGo.BottomSheet.Modal</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Widget.DuckDuckGo.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="shapeAppearance">@style/ShapeAppearance.DuckDuckgo.MediumComponent</item>
+        <item name="shapeAppearance">?shapeAppearanceLargeComponent</item>
     </style>
 
-<!--    <style name="FireDialog" parent="@style/Theme.Design.BottomSheetDialog">-->
+
+    <!--    <style name="FireDialog" parent="@style/Theme.Design.BottomSheetDialog">-->
 <!--        <item name="android:windowIsFloating">false</item>-->
 <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
 <!--        <item name="bottomSheetStyle">@style/FireDialogStyle</item>-->

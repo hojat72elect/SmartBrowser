@@ -21,8 +21,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/dialogBgColor"
     android:paddingTop="@dimen/keyline_2"
-    android:paddingBottom="@dimen/keyline_2"
-    app:layout_behavior="@string/bottom_sheet_behavior">
+    android:paddingBottom="@dimen/keyline_2">
 
     <TextView
         android:id="@+id/downloadMessage"
