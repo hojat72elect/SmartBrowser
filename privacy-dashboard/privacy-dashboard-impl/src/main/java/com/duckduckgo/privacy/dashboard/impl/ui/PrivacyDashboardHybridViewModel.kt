@@ -68,7 +68,8 @@ class PrivacyDashboardHybridViewModel @Inject constructor(
         val siteViewState: SiteViewState,
         val userChangedValues: Boolean = false,
         val requestData: RequestDataViewState,
-        val protectionStatus: ProtectionStatusViewState
+        val protectionStatus: ProtectionStatusViewState,
+        val localeSettings: LocaleSettings
     )
 
     data class ProtectionStatusViewState(
@@ -76,6 +77,10 @@ class PrivacyDashboardHybridViewModel @Inject constructor(
         val denylisted: Boolean,
         val enabledFeatures: List<String>,
         val unprotectedTemporary: Boolean
+    )
+
+    data class LocaleSettings(
+        val locale: String = "en",
     )
 
     data class RequestDataViewState(
@@ -186,7 +191,8 @@ class PrivacyDashboardHybridViewModel @Inject constructor(
                 ViewState(
                     siteViewState = siteViewStateMapper.mapFromSite(site),
                     requestData = requestDataViewStateMapper.mapFromSite(site),
-                    protectionStatus = protectionStatusViewStateMapper.mapFromSite(site)
+                    protectionStatus = protectionStatusViewStateMapper.mapFromSite(site),
+                    localeSettings = LocaleSettings()
                 )
             )
         }

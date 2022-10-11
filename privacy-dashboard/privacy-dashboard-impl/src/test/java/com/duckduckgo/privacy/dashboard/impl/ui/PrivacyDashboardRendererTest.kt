@@ -24,6 +24,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.duckduckgo.app.global.domain
 import com.duckduckgo.privacy.dashboard.impl.di.JsonModule
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.DetectedRequest
+import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.LocaleSettings
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.ProtectionStatusViewState
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.RequestDataViewState
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.SiteViewState
@@ -88,6 +89,7 @@ class PrivacyDashboardRendererTest {
         assertNotNull(captor.allValues.find { it.startsWith("javascript:onChangeCertificateData") })
         assertNotNull(captor.allValues.find { it.startsWith("javascript:onChangeUpgradedHttps") })
         assertNotNull(captor.allValues.find { it.startsWith("javascript:onChangeRequestData") })
+        assertNotNull(captor.allValues.find { it.startsWith("javascript:onChangeLocale") })
     }
 
     fun aViewState() = ViewState(
@@ -115,7 +117,8 @@ class PrivacyDashboardRendererTest {
                 )
             )
         ),
-        protectionStatus = ProtectionStatusViewState(true, true, emptyList(), true)
+        protectionStatus = ProtectionStatusViewState(true, true, emptyList(), true),
+        localeSettings = LocaleSettings()
     )
 
     private fun getMoshiPD(): Moshi = JsonModule.moshi(Moshi.Builder().build())

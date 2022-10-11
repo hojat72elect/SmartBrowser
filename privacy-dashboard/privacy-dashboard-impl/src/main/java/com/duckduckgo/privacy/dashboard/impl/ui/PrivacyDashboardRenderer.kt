@@ -18,6 +18,7 @@ package com.duckduckgo.privacy.dashboard.impl.ui
 
 import android.webkit.WebView
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.EntityViewState
+import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.LocaleSettings
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.ProtectionStatusViewState
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.RequestDataViewState
 import com.duckduckgo.privacy.dashboard.impl.ui.PrivacyDashboardHybridViewModel.SiteViewState
@@ -63,10 +64,14 @@ class PrivacyDashboardRenderer(
         val protectionsAdapter = moshi.adapter(ProtectionStatusViewState::class.java)
         val protectionsJson = protectionsAdapter.toJson(viewState.protectionStatus)
 
+        val localeAdapter = moshi.adapter(LocaleSettings::class.java)
+        val localeJson = localeAdapter.toJson(viewState.localeSettings)
+
         val parentEntityAdapter = moshi.adapter(EntityViewState::class.java)
         val parentEntityJson = parentEntityAdapter.toJson(viewState.siteViewState.parentEntity)
 
         onPrivacyProtectionSettingChanged(viewState.userChangedValues)
+        webView.evaluateJavascript("javascript:onChangeLocale(${localeJson});", null)
         webView.evaluateJavascript("javascript:onChangeProtectionStatus($protectionsJson);", null)
         webView.evaluateJavascript("javascript:onChangeParentEntity($parentEntityJson);", null)
         webView.evaluateJavascript("javascript:onChangeCertificateData($siteViewStateJson);", null)
