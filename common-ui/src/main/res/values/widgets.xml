@@ -153,6 +153,18 @@
         <item name="android:textColor">@color/almostBlackDark</item>
     </style>
 
+    <!-- Dax Buttons -->
+    <style name="Widget.DuckDuckGo.DaxButton.Ghost" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.DuckDuckGo.DaxButton.Ghost</item>
+        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.DuckDuckGo.SmallComponent</item>
+    </style>
+
+    <style name="ThemeOverlay.DuckDuckGo.DaxButton.Ghost" parent="">
+        <item name="colorPrimary">?daxColorAccentBlue</item>
+    </style>
+
+
     <!-- Buttons -->
     <style name="Widget.DuckDuckGo.Button" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textSize">14sp</item>
