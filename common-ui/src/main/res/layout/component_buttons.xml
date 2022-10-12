@@ -34,6 +34,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <com.duckduckgo.mobile.android.ui.view.button.DaxButtonGhost
+        android:id="@+id/daxbutton_ghost_large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dax Button Ghost Large"
+        app:daxButtonSize="large"/>
+
+    <com.duckduckgo.mobile.android.ui.view.button.DaxButtonGhost
+        android:id="@+id/daxbutton_ghost_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dax Button Ghost Small"
+        app:daxButtonSize="small"/>
+
+    <com.duckduckgo.mobile.android.ui.view.button.DaxButtonGhost
+        android:id="@+id/daxbutton_ghost_small_disabled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Dax Button Ghost Disabled"
+        app:daxButtonSize="small"/>
+
+    <com.duckduckgo.mobile.android.ui.view.text.SectionHeaderTextView
+        android:id="@+id/deprecated_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Deprecated Buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <com.duckduckgo.mobile.android.ui.view.button.ButtonPrimaryLarge
         android:id="@+id/button_primary_large"
         android:layout_width="match_parent"
@@ -83,13 +113,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:srcCompat="@drawable/ic_union"/>
-
-    <com.duckduckgo.mobile.android.ui.view.text.SectionHeaderTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Deprecated Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.duckduckgo.mobile.android.ui.view.button.ButtonPrimaryRounded
         android:id="@+id/button_primary_rounded"

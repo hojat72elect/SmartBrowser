@@ -155,15 +155,10 @@
 
     <!-- Dax Buttons -->
     <style name="Widget.DuckDuckGo.DaxButton.Ghost" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.DuckDuckGo.DaxButton.Ghost</item>
-        <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
+        <item name="android:textAppearance">@style/Typography.DuckDuckGo.Button</item>
         <item name="shapeAppearance">@style/ShapeAppearance.DuckDuckGo.SmallComponent</item>
+        <item name="android:textColor">@color/accent_blue_text_color_selector</item>
     </style>
-
-    <style name="ThemeOverlay.DuckDuckGo.DaxButton.Ghost" parent="">
-        <item name="colorPrimary">?daxColorAccentBlue</item>
-    </style>
-
 
     <!-- Buttons -->
     <style name="Widget.DuckDuckGo.Button" parent="Widget.AppCompat.Button.Borderless">

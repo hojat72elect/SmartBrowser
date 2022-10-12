@@ -21,10 +21,10 @@ import android.util.AttributeSet
 import com.duckduckgo.mobile.android.R
 import com.google.android.material.button.MaterialButton
 
-class DaxButton @JvmOverloads constructor(
+class DaxButtonPrimary @JvmOverloads constructor(
     ctx: Context,
     attrs: AttributeSet,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = R.attr.daxButtonGhost
 ) : MaterialButton(
     ctx,
     attrs,
@@ -37,17 +37,12 @@ class DaxButton @JvmOverloads constructor(
                 attrs,
                 R.styleable.DaxButton,
                 0,
-                0
+                R.style.Widget_DuckDuckGo_DaxButton_Ghost
             )
 
-        val buttonType = if (typedArray.hasValue(R.styleable.DaxButton_buttonType)) {
-            ButtonType.from(typedArray.getInt(R.styleable.DaxButton_buttonType, 0))
-        } else {
-            ButtonType.Primary
-        }
-
-        val isSmallButton = if (typedArray.hasValue(R.styleable.DaxButton_buttonSize)) {
-            typedArray.getInt(R.styleable.DaxButton_buttonSize, 0) == 0
+        val isSmallButton = if (typedArray.hasValue(R.styleable.DaxButton_daxButtonSize)) {
+            val buttonSize = typedArray.getInt(R.styleable.DaxButton_daxButtonSize, 0)
+            buttonSize > 0
         } else {
             false
         }
@@ -58,10 +53,10 @@ class DaxButton @JvmOverloads constructor(
     }
 
     private fun setButtonHeight(isSmall: Boolean) {
-        if (isSmall) {
-            minHeight = resources.getDimensionPixelOffset(R.dimen.buttonSmallHeight)
+        minHeight = if (isSmall) {
+            resources.getDimensionPixelSize(R.dimen.buttonSmallHeight)
         } else {
-            minHeight = resources.getDimensionPixelOffset(R.dimen.buttonLargeHeight)
+            resources.getDimensionPixelSize(R.dimen.buttonLargeHeight)
         }
     }
 
@@ -89,7 +84,7 @@ class DaxButton @JvmOverloads constructor(
                 return when (type) {
                     Primary -> R.style.Widget_DuckDuckGo_DaxButton_Ghost
                     Secondary -> R.style.Widget_DuckDuckGo_DaxButton_Ghost
-                    Ghost -> R.style.Widget_DuckDuckGo_DaxButton_Ghost
+                    Ghost -> R.attr.daxButtonGhost
                     Destructive -> R.style.Widget_DuckDuckGo_DaxButton_Ghost
                     DestructiveGhost -> R.style.Widget_DuckDuckGo_DaxButton_Ghost
                 }

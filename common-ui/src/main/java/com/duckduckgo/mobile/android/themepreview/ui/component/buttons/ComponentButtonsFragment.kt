@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 DuckDuckGo
+ * Copyright (c) 2021 DuckDuckGo
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package com.duckduckgo.mobile.android.ui.view.button
+package com.duckduckgo.mobile.android.themepreview.ui.component.buttons
 
-import android.content.Context
-import android.util.AttributeSet
-import com.duckduckgo.mobile.android.R
-import com.google.android.material.button.MaterialButton
-@Deprecated("This will be removed once we migrate all Components to the new Design System Spec")
-class ButtonPrimarySmall @JvmOverloads constructor(
-    ctx: Context,
-    attrs: AttributeSet,
-    defStyleAttr: Int = R.attr.primaryButtonSmallStyle
-) : MaterialButton(
-    ctx,
-    attrs,
-    defStyleAttr
-)
+import com.duckduckgo.mobile.android.themepreview.ui.component.Component
+import com.duckduckgo.mobile.android.themepreview.ui.component.ComponentFragment
+
+class ComponentButtonsFragment : ComponentFragment() {
+    override fun getComponents(): List<Component> {
+        return listOf(
+            Component.BUTTON
+        )
+    }
+}
