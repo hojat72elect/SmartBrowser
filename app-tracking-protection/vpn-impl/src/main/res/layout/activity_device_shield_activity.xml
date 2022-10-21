@@ -56,7 +56,7 @@
                 android:visibility="gone"
                 android:layout_margin="16dp"/>
 
-            <com.duckduckgo.mobile.android.ui.view.text.SectionHeaderTextView
+            <com.duckduckgo.mobile.android.ui.view.listitem.SectionHeaderListItem
                 android:id="@+id/past_week_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <com.duckduckgo.mobile.android.ui.view.text.SectionHeaderTextView
+            <com.duckduckgo.mobile.android.ui.view.listitem.SectionHeaderListItem
                 android:id="@+id/most_recent_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <com.duckduckgo.mobile.android.ui.view.text.SectionHeaderTextView
+            <com.duckduckgo.mobile.android.ui.view.listitem.SectionHeaderListItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/keyline_2"
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 app:primaryText="@string/atp_ActivityBetaInstructions"/>
 
-            <com.duckduckgo.mobile.android.ui.view.text.SectionHeaderTextView
+            <com.duckduckgo.mobile.android.ui.view.listitem.SectionHeaderListItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/keyline_4"
