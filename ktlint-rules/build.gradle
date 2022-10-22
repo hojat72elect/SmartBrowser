@@ -1,0 +1,21 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-library'
+}
+
+dependencies {
+    compileOnly Kotlin.stdlib.jdk7
+    compileOnly "com.pinterest.ktlint:ktlint-core:$ktlint_version"
+
+    testImplementation Testing.junit4
+    testImplementation "com.pinterest.ktlint:ktlint-test:$ktlint_version"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
