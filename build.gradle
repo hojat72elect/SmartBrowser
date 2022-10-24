@@ -25,7 +25,7 @@ buildscript {
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotless"
         classpath "com.squareup.anvil:gradle-plugin:$anvil_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath(files("ktlintrules/libs/ktlint-rules-all.jar"))
+        classpath(files("ktlint-rules/libs/ktlint-rules-all.jar"))
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
