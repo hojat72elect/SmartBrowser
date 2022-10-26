@@ -34,10 +34,10 @@ import com.duckduckgo.app.global.extensions.safeGetApplicationIcon
 import com.duckduckgo.app.global.formatters.time.TimeDiffFormatter
 import com.duckduckgo.mobile.android.ui.TextDrawable
 import com.duckduckgo.mobile.android.ui.recyclerviewext.StickyHeaders
+import com.duckduckgo.mobile.android.ui.view.gone
 import com.duckduckgo.mobile.android.ui.view.hide
 import com.duckduckgo.mobile.android.ui.view.show
 import com.duckduckgo.mobile.android.vpn.R
-import com.duckduckgo.mobile.android.vpn.apps.ui.TrackingProtectionExclusionListActivity
 import com.duckduckgo.mobile.android.vpn.apps.ui.TrackingProtectionExclusionListActivity.Companion.AppsFilter
 import com.duckduckgo.mobile.android.vpn.apps.ui.TrackingProtectionExclusionListActivity.Companion.AppsFilter.PROTECTED_ONLY
 import com.duckduckgo.mobile.android.vpn.apps.ui.TrackingProtectionExclusionListActivity.Companion.AppsFilter.UNPROTECTED_ONLY
@@ -54,6 +54,8 @@ class TrackerFeedAdapter @Inject constructor(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), StickyHeaders {
 
     private val trackerFeedItems = mutableListOf<TrackerFeedItem>()
+    private var isAppTPRunning: Boolean = false
+
     private lateinit var onAppClick: (TrackerFeedItem.TrackerFeedData) -> Unit
     private lateinit var onAppsFilterClick: (AppsFilter) -> Unit
 
@@ -67,12 +69,14 @@ class TrackerFeedAdapter @Inject constructor(
                 onAppClick,
                 position == trackerFeedItems.size - 1 && trackerFeedItems.size < MAX_FEED_ITEMS_SIZE,
             )
+
             is TrackerSkeletonViewHolder -> holder.bind()
             is TrackerFeedHeaderViewHolder -> holder.bind(trackerFeedItems[position] as TrackerFeedItem.TrackerFeedItemHeader)
             is TrackerAppsDataViewHolder -> holder.bind(
                 trackerFeedItems[position] as TrackerFeedItem.TrackerAppsData,
                 position == trackerFeedItems.size - 1 && trackerFeedItems.size < MAX_FEED_ITEMS_SIZE,
-                onAppsFilterClick
+                onAppsFilterClick,
+                isAppTPRunning
             )
         }
     }
@@ -114,6 +118,7 @@ class TrackerFeedAdapter @Inject constructor(
     ) {
         onAppClick = onAppClickListener
         onAppsFilterClick = onAppsFilterListener
+        isAppTPRunning = isRunning
         val newData = data
         val oldData = trackerFeedItems
         val diffResult = withContext(Dispatchers.IO) {
@@ -292,7 +297,8 @@ class TrackerFeedAdapter @Inject constructor(
         fun bind(
             item: TrackerAppsData,
             shouldHideDivider: Boolean,
-            onAppsFilterClick: (AppsFilter) -> Unit
+            onAppsFilterClick: (AppsFilter) -> Unit,
+            isAppTPRunning: Boolean
         ) {
             appsText.text = context.resources.getQuantityString(
                 if (item.isProtected) R.plurals.atp_ActivityProtectedApps else R.plurals.atp_ActivityUnprotectedApps,
@@ -308,15 +314,26 @@ class TrackerFeedAdapter @Inject constructor(
                 warningImage.show()
             }
 
+            if (shouldHideDivider) {
+                splitter.hide()
+            } else {
+                splitter.show()
+            }
+
             itemView.setOnClickListener {
                 val appsFilter = if (item.isProtected) PROTECTED_ONLY else UNPROTECTED_ONLY
                 onAppsFilterClick(appsFilter)
             }
 
-            if (shouldHideDivider) {
-                splitter.hide()
+            if (isAppTPRunning) {
+                itemView.setOnClickListener {
+                    val appsFilter = if (item.isProtected) PROTECTED_ONLY else UNPROTECTED_ONLY
+                    onAppsFilterClick(appsFilter)
+                }
             } else {
-                splitter.show()
+                appsText.isEnabled = false
+                multiAppsIcon.alpha = 0.45f
+                warningImage.alpha = 0.45f
             }
         }
     }

@@ -27,6 +27,7 @@ import com.duckduckgo.app.global.formatters.time.DatabaseDateFormatter
 import com.duckduckgo.app.global.formatters.time.RealTimeDiffFormatter
 import com.duckduckgo.mobile.android.vpn.apps.TrackingProtectionAppInfo
 import com.duckduckgo.mobile.android.vpn.apps.TrackingProtectionAppsRepository
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor
 import com.duckduckgo.mobile.android.vpn.stats.AppTrackerBlockingStatsRepository.TimeWindow
 import com.duckduckgo.mobile.android.vpn.store.VpnDatabase
 import com.duckduckgo.mobile.android.vpn.stats.RealAppTrackerBlockingStatsRepository
@@ -56,6 +57,7 @@ class DeviceShieldActivityFeedViewModelTest {
     private lateinit var viewModel: DeviceShieldActivityFeedViewModel
 
     private val mockExcludedApps: TrackingProtectionAppsRepository = mock()
+    private val mockVpnStateMonitor: VpnStateMonitor = mock()
 
     @Before
     fun setup() {
@@ -68,7 +70,8 @@ class DeviceShieldActivityFeedViewModelTest {
             RealAppTrackerBlockingStatsRepository(db),
             CoroutineTestRule().testDispatcherProvider,
             RealTimeDiffFormatter(InstrumentationRegistry.getInstrumentation().targetContext),
-            mockExcludedApps
+            mockExcludedApps,
+            mockVpnStateMonitor
         )
     }
 

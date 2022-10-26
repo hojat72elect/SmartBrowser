@@ -29,6 +29,7 @@ import com.duckduckgo.mobile.android.vpn.AppTpVpnFeature
 import com.duckduckgo.mobile.android.vpn.apps.TrackingProtectionAppInfo
 import com.duckduckgo.mobile.android.vpn.apps.TrackingProtectionAppsRepository
 import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor.VpnRunningState
 import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor.VpnState
 import com.duckduckgo.mobile.android.vpn.ui.tracker_activity.model.TrackerFeedItem
 import com.duckduckgo.mobile.android.vpn.ui.tracker_activity.model.TrackerCompanyBadge
@@ -84,12 +85,22 @@ class DeviceShieldActivityFeedViewModel @Inject constructor(
         return@withContext statsRepository.getMostRecentVpnTrackers { timeWindow.asString() }
             .combine(tickerChannel.asStateFlow()) { trackers, _ -> trackers }
             .map { aggregateDataPerApp(it, showHeadings) }
-            .combine(getAppsData()) { recentTrackersList, appsList ->
-                if (recentTrackersList.isEmpty()) {
-                    listOf(TrackerFeedItem.TrackerDescriptionFeed) + appsList
+            .combine(getRunningState()) { trackers, runningState ->
+                TrackerActivityViewState(trackers, runningState)
+            }
+            .combine(getAppsData()) { trackerActivityState, appsList ->
+                if (trackerActivityState.runningState.state == VpnRunningState.ENABLED){
+                    if (trackerActivityState.trackers.isEmpty()) {
+                        listOf(TrackerFeedItem.TrackerDescriptionFeed) + appsList
+                    } else {
+                        trackerActivityState.trackers + appsList
+                    }
                 } else {
-                    recentTrackersList + appsList
+                    trackerActivityState.trackers.ifEmpty {
+                        listOf(TrackerFeedItem.TrackerDescriptionFeed)
+                    }
                 }
+
             }
             .flowOn(Dispatchers.Default)
             .onStart {
@@ -98,6 +109,11 @@ class DeviceShieldActivityFeedViewModel @Inject constructor(
                 delay(300)
             }
     }
+
+    internal data class TrackerActivityViewState(
+        val trackers: List<TrackerFeedItem>,
+        val runningState: VpnState
+    )
 
     private suspend fun getAppsData(): Flow<List<TrackerFeedItem>> = withContext(dispatcherProvider.io()) {
         return@withContext excludedApps.getAppsAndProtectionInfo().map { list ->
