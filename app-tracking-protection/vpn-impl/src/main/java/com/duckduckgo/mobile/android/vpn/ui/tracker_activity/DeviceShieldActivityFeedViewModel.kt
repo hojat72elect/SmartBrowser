@@ -25,8 +25,11 @@ import com.duckduckgo.mobile.android.vpn.stats.AppTrackerBlockingStatsRepository
 import com.duckduckgo.app.global.formatters.time.TimeDiffFormatter
 import com.duckduckgo.mobile.android.vpn.stats.AppTrackerBlockingStatsRepository.TimeWindow
 import com.duckduckgo.di.scopes.FragmentScope
+import com.duckduckgo.mobile.android.vpn.AppTpVpnFeature
 import com.duckduckgo.mobile.android.vpn.apps.TrackingProtectionAppInfo
 import com.duckduckgo.mobile.android.vpn.apps.TrackingProtectionAppsRepository
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor.VpnState
 import com.duckduckgo.mobile.android.vpn.ui.tracker_activity.model.TrackerFeedItem
 import com.duckduckgo.mobile.android.vpn.ui.tracker_activity.model.TrackerCompanyBadge
 import kotlinx.coroutines.*
@@ -44,7 +47,8 @@ class DeviceShieldActivityFeedViewModel @Inject constructor(
     private val statsRepository: AppTrackerBlockingStatsRepository,
     private val dispatcherProvider: DispatcherProvider,
     private val timeDiffFormatter: TimeDiffFormatter,
-    private val excludedApps: TrackingProtectionAppsRepository
+    private val excludedApps: TrackingProtectionAppsRepository,
+    private val vpnStateMonitor: VpnStateMonitor
 ) : ViewModel() {
 
     private val MAX_BADGES_TO_DISPLAY = 5
@@ -53,6 +57,8 @@ class DeviceShieldActivityFeedViewModel @Inject constructor(
 
     private val tickerChannel = MutableStateFlow(System.currentTimeMillis())
     private var tickerJob: Job? = null
+
+    private val refreshVpnRunningState = MutableStateFlow(System.currentTimeMillis())
 
     private fun startTickerRefresher() {
         Timber.i("startTickerRefresher")
@@ -63,6 +69,12 @@ class DeviceShieldActivityFeedViewModel @Inject constructor(
                 tickerChannel.emit(System.currentTimeMillis())
             }
         }
+    }
+
+    internal suspend fun getRunningState(): Flow<VpnState> = withContext(dispatcherProvider.io()) {
+        return@withContext vpnStateMonitor
+            .getStateFlow(AppTpVpnFeature.APPTP_VPN)
+            .combine(refreshVpnRunningState.asStateFlow()) { state, _ -> state }
     }
 
     suspend fun getMostRecentTrackers(

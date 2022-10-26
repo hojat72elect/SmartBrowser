@@ -30,9 +30,15 @@ import com.duckduckgo.app.global.DuckDuckGoFragment
 import com.duckduckgo.di.scopes.FragmentScope
 import com.duckduckgo.mobile.android.ui.recyclerviewext.StickyHeadersLinearLayoutManager
 import com.duckduckgo.mobile.android.vpn.R
+import com.duckduckgo.mobile.android.vpn.apps.ui.TrackingProtectionExclusionListActivity
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor.BannerState
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor.VpnRunningState
+import com.duckduckgo.mobile.android.vpn.state.VpnStateMonitor.VpnState
 import com.duckduckgo.mobile.android.vpn.stats.AppTrackerBlockingStatsRepository.TimeWindow
+import com.duckduckgo.mobile.android.vpn.ui.tracker_activity.DeviceShieldTrackerActivityViewModel.TrackerCountInfo
 import com.duckduckgo.mobile.android.vpn.ui.tracker_activity.model.TrackerFeedItem
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -84,31 +90,50 @@ class DeviceShieldActivityFeedFragment : DuckDuckGoFragment() {
                     config.timeWindowUnits
                 ),
                 config.showTimeWindowHeadings
-            )
+            ).combine(activityFeedViewModel.getRunningState()) { trackers, runningState ->
+                TrackerActivityViewState(trackers, runningState)
+            }
                 .flowWithLifecycle(lifecycle, Lifecycle.State.CREATED)
-                .collect {
-                    feedListener?.onTrackerListShowed(it.size)
-                    trackerFeedAdapter.updateData(if (config.unboundedRows()) it else it.take(config.maxRows)) { trackerFeedData ->
-                        if (trackerFeedData.isAppInstalled()) {
+                .collect { it ->
+                    feedListener?.onTrackerListShowed(it.trackers.size)
+                    trackerFeedAdapter.updateData(
+                        if (config.unboundedRows()) it.trackers else it.trackers.take(config.maxRows),
+                        it.runningState.state == VpnRunningState.ENABLED,
+                        onAppClickListener = { trackerFeedData ->
+                            if (trackerFeedData.isAppInstalled()) {
+                                startActivity(
+                                    AppTPCompanyTrackersActivity.intent(
+                                        requireContext(),
+                                        trackerFeedData.trackingApp.packageId,
+                                        trackerFeedData.trackingApp.appDisplayName,
+                                        trackerFeedData.bucket
+                                    )
+                                )
+                            } else {
+                                Snackbar.make(
+                                    requireView(),
+                                    getString(R.string.atp_CompanyDetailsNotAvailableForUninstalledApps),
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                            }
+                        },
+                        onAppsFilterListener = { filter ->
                             startActivity(
-                                AppTPCompanyTrackersActivity.intent(
+                                TrackingProtectionExclusionListActivity.intent(
                                     requireContext(),
-                                    trackerFeedData.trackingApp.packageId,
-                                    trackerFeedData.trackingApp.appDisplayName,
-                                    trackerFeedData.bucket
+                                    it.runningState.state == VpnRunningState.ENABLED,
+                                    filter
                                 )
                             )
-                        } else {
-                            Snackbar.make(
-                                requireView(),
-                                getString(R.string.atp_CompanyDetailsNotAvailableForUninstalledApps),
-                                Snackbar.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
+                        })
                 }
         }
     }
+
+    internal data class TrackerActivityViewState(
+        val trackers: List<TrackerFeedItem>,
+        val runningState: VpnState
+    )
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

@@ -395,7 +395,7 @@ class DeviceShieldTrackerActivity :
     }
 
     private fun launchTrackingProtectionExclusionListActivity() {
-        startActivity(TrackingProtectionExclusionListActivity.intent(this))
+        startActivity(TrackingProtectionExclusionListActivity.intent(this, deviceShieldSwitch.isChecked))
     }
 
     private fun startVPN() {
