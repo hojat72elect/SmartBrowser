@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2022 DuckDuckGo
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.duckduckgo.adclick.api
 
 /** Public interface for the Ad Click feature which helps to measure ad conversions only when they are required */
@@ -26,7 +10,12 @@ interface AdClickManager {
      * optional [sourceTabId] - The id of the tab from which the current tab was opened, null if a new tab option was used.
      * optional [sourceTabUrl] - The url loaded in the tab from which the current tab was opened, null if a new tab option was used.
      */
-    fun setActiveTabId(tabId: String, url: String? = null, sourceTabId: String? = null, sourceTabUrl: String? = null)
+    fun setActiveTabId(
+        tabId: String,
+        url: String? = null,
+        sourceTabId: String? = null,
+        sourceTabUrl: String? = null
+    )
 
     /**
      * Detects and registers the eTLD+1 if an ad link was clicked. It takes as parameters:

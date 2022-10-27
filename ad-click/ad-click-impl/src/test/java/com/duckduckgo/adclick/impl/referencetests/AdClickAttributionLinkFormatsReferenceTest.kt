@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2022 DuckDuckGo
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.duckduckgo.adclick.impl.referencetests
 
 import com.duckduckgo.adclick.api.AdClickFeatureName
@@ -50,8 +34,21 @@ class AdClickAttributionLinkFormatsReferenceTest(private val testCase: TestCase)
     fun setup() {
         mockAdClickLinkFormats()
         testee = RealAdClickAttribution(mockRepository, mockFeatureToggle)
-        whenever(mockFeatureToggle.isFeatureEnabled(AdClickFeatureName.AdClickAttributionFeatureName.value, true)).thenReturn(true)
-        whenever(mockRepository.detections).thenReturn(listOf(AdClickAttributionDetectionEntity(1, "enabled", "enabled")))
+        whenever(
+            mockFeatureToggle.isFeatureEnabled(
+                AdClickFeatureName.AdClickAttributionFeatureName.value,
+                true
+            )
+        ).thenReturn(true)
+        whenever(mockRepository.detections).thenReturn(
+            listOf(
+                AdClickAttributionDetectionEntity(
+                    1,
+                    "enabled",
+                    "enabled"
+                )
+            )
+        )
     }
 
     companion object {
@@ -78,14 +75,16 @@ class AdClickAttributionLinkFormatsReferenceTest(private val testCase: TestCase)
     }
 
     private fun mockAdClickLinkFormats() {
-        val jsonAdapter: JsonAdapter<AdClickAttributionFeature> = moshi.adapter(AdClickAttributionFeature::class.java)
+        val jsonAdapter: JsonAdapter<AdClickAttributionFeature> =
+            moshi.adapter(AdClickAttributionFeature::class.java)
         val adClickLinkFormats = CopyOnWriteArrayList<AdClickAttributionLinkFormatEntity>()
         val jsonObject: JSONObject = FileUtilities.getJsonObjectFromFile(
             AdClickAttributionLinkFormatsReferenceTest::class.java.classLoader!!,
             "reference_tests/adclickattribution/ad_click_attribution_reference.json"
         )
 
-        val linkFormatList: List<AdClickAttributionLinkFormat>? = jsonAdapter.fromJson(jsonObject.toString())?.settings?.linkFormats
+        val linkFormatList: List<AdClickAttributionLinkFormat>? =
+            jsonAdapter.fromJson(jsonObject.toString())?.settings?.linkFormats
         linkFormatList?.let { list ->
             adClickLinkFormats.addAll(
                 list.map {
