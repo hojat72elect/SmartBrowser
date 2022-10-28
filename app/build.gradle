@@ -202,7 +202,7 @@ dependencies {
     implementation project(':downloads-impl')
     implementation project(':downloads-store')
 
-    internalImplementation project(':traces-impl')
+    internalImplementation project(':traces')
 
     implementation project(':site-permissions-api')
     implementation project(':site-permissions-impl')
