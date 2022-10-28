@@ -194,7 +194,6 @@ dependencies {
     implementation project(':remote-messaging-impl')
     implementation project(':remote-messaging-store')
 
-    implementation project(':voice-search-api')
     implementation project(':voice-search-impl')
     implementation project(':voice-search-store')
 

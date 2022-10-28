@@ -34,7 +34,6 @@ dependencies {
     implementation project(path: ':common-ui')
     implementation project(path: ':di')
     implementation project(path: ':statistics')
-    implementation project(path: ':voice-search-api')
     implementation project(path: ':voice-search-store')
 
     anvil project(path: ':anvil-compiler')
