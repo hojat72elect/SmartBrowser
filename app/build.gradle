@@ -196,7 +196,7 @@ dependencies {
 
     implementation project(':voice-search')
 
-    implementation project(':downloads-impl')
+    implementation project(':downloads')
 
     internalImplementation project(':traces')
 
