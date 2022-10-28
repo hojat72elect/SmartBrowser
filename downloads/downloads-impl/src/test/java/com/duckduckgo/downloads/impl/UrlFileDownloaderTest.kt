@@ -169,7 +169,8 @@ class UrlFileDownloaderTest {
         verify(downloadCallback, never()).onSuccess(any(), any(), any(), anyOrNull())
 
         verify(downloadCallback, never()).onCancel(any())
-        verify(downloadCallback, never()).onError(eq(pendingFileDownload.url), any(), eq(DownloadFailReason.ConnectionRefused))
+        verify(downloadCallback, never()).onError(eq(pendingFileDownload.url), any(), eq(
+            DownloadFailReason.ConnectionRefused))
     }
 
     private fun buildPendingDownload(
