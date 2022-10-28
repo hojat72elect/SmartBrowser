@@ -29,7 +29,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':traces-api')
     implementation project(path: ':di')
 
     implementation Kotlin.stdlib.jdk7
