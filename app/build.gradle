@@ -222,7 +222,7 @@ dependencies {
     implementation project(':autoconsent-impl')
     implementation project(':autoconsent-store')
 
-    implementation project(':cookies-impl')
+    implementation project(':cookies')
 
     implementation project(':content-scope-scripts-api')
     implementation project(':content-scope-scripts-impl')
