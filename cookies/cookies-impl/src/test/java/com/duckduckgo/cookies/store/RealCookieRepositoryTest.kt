@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2022 DuckDuckGo
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.duckduckgo.cookies.store
 
 import com.duckduckgo.app.CoroutineTestRule
@@ -103,14 +87,23 @@ class RealCookieRepositoryTest {
 
         reset(mockCookiesDao)
 
-        testee.updateAll(listOf(), FirstPartyCookiePolicyEntity(5, 6, 7))
+        testee.updateAll(
+            listOf(),
+            FirstPartyCookiePolicyEntity(5, 6, 7)
+        )
 
         assertEquals(0, testee.exceptions.size)
     }
 
     private fun givenCookiesDaoHasContent() {
         whenever(mockCookiesDao.getAllCookieExceptions()).thenReturn(listOf(cookieExceptionEntity))
-        whenever(mockCookiesDao.getFirstPartyCookiePolicy()).thenReturn(FirstPartyCookiePolicyEntity(1, THRESHOLD, MAX_AGE))
+        whenever(mockCookiesDao.getFirstPartyCookiePolicy()).thenReturn(
+            FirstPartyCookiePolicyEntity(
+                1,
+                THRESHOLD,
+                MAX_AGE
+            )
+        )
     }
 
     companion object {

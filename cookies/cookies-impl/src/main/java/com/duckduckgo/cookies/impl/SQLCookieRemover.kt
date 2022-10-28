@@ -37,7 +37,8 @@ import kotlin.coroutines.suspendCoroutine
 
 @ContributesBinding(AppScope::class)
 @Named("cookieManagerRemover")
-class CookieManagerRemover @Inject constructor(private val cookieManagerProvider: CookieManagerProvider) : CookieRemover {
+class CookieManagerRemover @Inject constructor(private val cookieManagerProvider: CookieManagerProvider) :
+    CookieRemover {
     override suspend fun removeCookies(): Boolean {
         suspendCoroutine { continuation ->
             cookieManagerProvider.get().removeAllCookies {
