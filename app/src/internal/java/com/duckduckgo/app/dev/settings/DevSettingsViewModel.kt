@@ -25,7 +25,7 @@ import com.duckduckgo.app.dev.settings.db.UAOverride
 import com.duckduckgo.app.browser.useragent.UserAgentProvider
 import com.duckduckgo.app.dev.settings.db.DevSettingsDataStore
 import com.duckduckgo.app.global.DispatcherProvider
-import com.duckduckgo.app.traces.api.StartupTraces
+import com.duckduckgo.app.traces.StartupTraces
 import com.duckduckgo.di.scopes.ActivityScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
