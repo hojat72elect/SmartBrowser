@@ -7,6 +7,9 @@ import com.duckduckgo.di.scopes.AppScope
 import com.squareup.anvil.annotations.ContributesBinding
 import javax.inject.Inject
 
+/**
+ * Implements the tracing API
+ */
 @ContributesBinding(AppScope::class)
 class RealStartupTraces @Inject constructor(
     private val context: Context

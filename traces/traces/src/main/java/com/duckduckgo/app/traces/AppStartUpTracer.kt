@@ -16,6 +16,9 @@ import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
+/**
+ * Implements the tracing API
+ */
 @ContributesMultibinding(
     scope = AppScope::class,
     boundType = LifecycleObserver::class
