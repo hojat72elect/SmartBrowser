@@ -209,8 +209,7 @@ dependencies {
     implementation project(':ad-click-impl')
     implementation project(':ad-click-store')
 
-    implementation project(':autoconsent-impl')
-
+    implementation project(':autoconsent')
     implementation project(':cookies')
 
     implementation project(':content-scope-scripts-api')
