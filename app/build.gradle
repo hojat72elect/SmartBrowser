@@ -193,13 +193,9 @@ dependencies {
     implementation project(':remote-messaging-store')
 
     implementation project(':voice-search')
-
     implementation project(':downloads')
-
     internalImplementation project(':traces')
-
-    implementation project(':site-permissions-impl')
-
+    implementation project(':site-permissions')
     implementation project(':bandwidth')
 
     implementation project(':secure-storage-api')
