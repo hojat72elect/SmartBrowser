@@ -198,7 +198,6 @@ dependencies {
 
     internalImplementation project(':traces')
 
-    implementation project(':site-permissions-api')
     implementation project(':site-permissions-impl')
 
     implementation project(':bandwidth')
