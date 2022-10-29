@@ -53,13 +53,19 @@ class FakeSettingsRepository : AutoconsentSettingsRepository {
     override var firstPopupHandled: Boolean = false
 }
 
-class FakeUnprotected(private val exceptionList: List<String>) : UnprotectedTemporary {
+class FakeUnprotected(private val exceptionList: List<String>) :
+    com.duckduckgo.privacy.config.api.UnprotectedTemporary {
     override fun isAnException(url: String): Boolean {
         return exceptionList.contains(url.toUri().domain())
     }
 
-    override val unprotectedTemporaryExceptions: List<UnprotectedTemporaryException>
-        get() = exceptionList.map { UnprotectedTemporaryException(domain = it, reason = "A reason") }
+    override val unprotectedTemporaryExceptions: List<com.duckduckgo.privacy.config.api.UnprotectedTemporaryException>
+        get() = exceptionList.map {
+            com.duckduckgo.privacy.config.api.UnprotectedTemporaryException(
+                domain = it,
+                reason = "A reason"
+            )
+        }
 }
 
 class FakeUserAllowlist(override val userWhiteList: List<String>) : UserWhiteListRepository

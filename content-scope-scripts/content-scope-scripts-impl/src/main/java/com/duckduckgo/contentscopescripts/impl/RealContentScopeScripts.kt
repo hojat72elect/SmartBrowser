@@ -39,7 +39,7 @@ class RealContentScopeScripts @Inject constructor(
     private val allowList: UserWhiteListRepository,
     private val contentScopeJSReader: ContentScopeJSReader,
     private val appBuildConfig: AppBuildConfig,
-    private val unprotectedTemporary: UnprotectedTemporary
+    private val unprotectedTemporary: com.duckduckgo.privacy.config.api.UnprotectedTemporary
 ) : ContentScopeScripts {
 
     private var cachedContentScopeJson: String = getContentScopeJson("", emptyList())
@@ -49,7 +49,7 @@ class RealContentScopeScripts @Inject constructor(
 
     private var cachedUserPreferencesJson: String = emptyJson
 
-    private var cachedUnprotectTemporaryExceptions = CopyOnWriteArrayList<UnprotectedTemporaryException>()
+    private var cachedUnprotectTemporaryExceptions = CopyOnWriteArrayList<com.duckduckgo.privacy.config.api.UnprotectedTemporaryException>()
     private var cachedUnprotectTemporaryExceptionsJson: String = emptyJsonList
 
     private lateinit var cachedContentScopeJS: String
@@ -117,7 +117,7 @@ class RealContentScopeScripts @Inject constructor(
         }
     }
 
-    private fun cacheUserUnprotectedTemporaryExceptions(unprotectedTemporaryExceptions: List<UnprotectedTemporaryException>) {
+    private fun cacheUserUnprotectedTemporaryExceptions(unprotectedTemporaryExceptions: List<com.duckduckgo.privacy.config.api.UnprotectedTemporaryException>) {
         cachedUnprotectTemporaryExceptions.clear()
         if (unprotectedTemporaryExceptions.isEmpty()) {
             cachedUnprotectTemporaryExceptionsJson = emptyJsonList
@@ -143,10 +143,10 @@ class RealContentScopeScripts @Inject constructor(
         return jsonAdapter.toJson(userUnprotectedDomains)
     }
 
-    private fun getUnprotectedTemporaryJson(unprotectedTemporaryExceptions: List<UnprotectedTemporaryException>): String {
-        val type = Types.newParameterizedType(MutableList::class.java, UnprotectedTemporaryException::class.java)
+    private fun getUnprotectedTemporaryJson(unprotectedTemporaryExceptions: List<com.duckduckgo.privacy.config.api.UnprotectedTemporaryException>): String {
+        val type = Types.newParameterizedType(MutableList::class.java, com.duckduckgo.privacy.config.api.UnprotectedTemporaryException::class.java)
         val moshi = Builder().build()
-        val jsonAdapter: JsonAdapter<List<UnprotectedTemporaryException>> = moshi.adapter(type)
+        val jsonAdapter: JsonAdapter<List<com.duckduckgo.privacy.config.api.UnprotectedTemporaryException>> = moshi.adapter(type)
         return jsonAdapter.toJson(unprotectedTemporaryExceptions)
     }
 
@@ -162,7 +162,7 @@ class RealContentScopeScripts @Inject constructor(
 
     private fun getPlatformKeyValuePair() = "\"platform\":{\"name\":\"android\"}"
 
-    private fun getContentScopeJson(config: String, unprotectedTemporaryExceptions: List<UnprotectedTemporaryException>): String = (
+    private fun getContentScopeJson(config: String, unprotectedTemporaryExceptions: List<com.duckduckgo.privacy.config.api.UnprotectedTemporaryException>): String = (
         "{\"features\":{$config},\"unprotectedTemporary\":${getUnprotectedTemporaryJson(unprotectedTemporaryExceptions)}}"
         )
 

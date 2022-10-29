@@ -33,7 +33,7 @@ import javax.inject.Inject
 class AutoconsentFeaturePlugin @Inject constructor(
     private val autoconsentRepository: AutoconsentRepository,
     private val autoconsentFeatureToggleRepository: AutoconsentFeatureToggleRepository
-) : PrivacyFeaturePlugin {
+) : com.duckduckgo.privacy.config.api.PrivacyFeaturePlugin {
 
     override fun store(featureName: String, jsonString: String): Boolean {
         val autoconsentFeatureName = autoconsentFeatureValueOf(featureName) ?: return false

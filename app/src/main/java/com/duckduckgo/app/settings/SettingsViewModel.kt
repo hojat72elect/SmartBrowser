@@ -163,7 +163,8 @@ class SettingsViewModel @Inject constructor(
                     automaticallyClearData = AutomaticallyClearData(automaticallyClearWhat, automaticallyClearWhen, automaticallyClearWhenEnabled),
                     appIcon = settingsDataStore.appIcon,
                     selectedFireAnimation = settingsDataStore.selectedFireAnimation,
-                    globalPrivacyControlEnabled = gpc.isEnabled() && featureToggle.isFeatureEnabled(PrivacyFeatureName.GpcFeatureName.value),
+                    globalPrivacyControlEnabled = gpc.isEnabled() && featureToggle.isFeatureEnabled(
+                        PrivacyFeatureName.GpcFeatureName.value),
                     appLinksSettingType = getAppLinksSettingsState(settingsDataStore.appLinksEnabled, settingsDataStore.showAppLinksPrompt),
                     appTrackingProtectionEnabled = vpnFeaturesRegistry.isFeatureRegistered(AppTpVpnFeature.APPTP_VPN),
                     appTrackingProtectionWaitlistState = atpRepository.getState(),

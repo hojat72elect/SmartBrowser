@@ -36,7 +36,7 @@ import javax.inject.Inject
 class CookiesFeaturePlugin @Inject constructor(
     private val cookiesRepository: CookiesRepository,
     private val cookiesFeatureToggleRepository: CookiesFeatureToggleRepository
-) : PrivacyFeaturePlugin {
+) : com.duckduckgo.privacy.config.api.PrivacyFeaturePlugin {
 
     override fun store(featureName: String, jsonString: String): Boolean {
         val cookiesFeatureName = cookiesFeatureValueOf(featureName) ?: return false

@@ -19,7 +19,7 @@ import javax.inject.Inject
 class AdClickAttributionPlugin @Inject constructor(
     private val adClickAttributionRepository: AdClickAttributionRepository,
     private val adClickFeatureTogglesRepository: AdClickFeatureToggleRepository
-) : PrivacyFeaturePlugin {
+) : com.duckduckgo.privacy.config.api.PrivacyFeaturePlugin {
 
     override fun store(featureName: String, jsonString: String): Boolean {
         val adClickFeature = adClickFeatureValueOf(featureName) ?: return false

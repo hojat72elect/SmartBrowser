@@ -27,7 +27,7 @@ dependencies {
     implementation project(':common')
     implementation project(':content-scope-scripts-api')
     implementation project(':app-store')
-    implementation project(':privacy-config-api')
+    implementation project(':privacy-config')
     implementation project(':app-build-config-api')
 
     anvil project(':anvil-compiler')

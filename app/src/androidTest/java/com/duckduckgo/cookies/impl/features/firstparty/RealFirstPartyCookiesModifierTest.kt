@@ -175,7 +175,9 @@ class RealFirstPartyCookiesModifierTest {
         }
 
         givenDatabaseWithCookies((THRESHOLD + 1).toLong())
-        whenever(mockUnprotectedTemporary.unprotectedTemporaryExceptions).thenReturn(listOf(UnprotectedTemporaryException("example.com", "reason")))
+        whenever(mockUnprotectedTemporary.unprotectedTemporaryExceptions).thenReturn(listOf(
+            UnprotectedTemporaryException("example.com", "reason")
+        ))
         val sqlCookieRemover = givenRealFirstPartyCookiesModifier()
 
         val initialValue = queryCookiesDB("example.com")

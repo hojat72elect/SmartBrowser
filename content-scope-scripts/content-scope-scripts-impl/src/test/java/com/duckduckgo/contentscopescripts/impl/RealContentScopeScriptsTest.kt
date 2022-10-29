@@ -40,7 +40,7 @@ class RealContentScopeScriptsTest {
     private val mockPlugin1: ContentScopeConfigPlugin = mock()
     private val mockPlugin2: ContentScopeConfigPlugin = mock()
     private val mockAppBuildConfig: AppBuildConfig = mock()
-    private val mockUnprotectedTemporary: UnprotectedTemporary = mock()
+    private val mockUnprotectedTemporary: com.duckduckgo.privacy.config.api.UnprotectedTemporary = mock()
 
     lateinit var testee: ContentScopeScripts
 
@@ -186,7 +186,15 @@ class RealContentScopeScriptsTest {
             "\"unprotectedTemporary\":[{\"domain\":\"example.com\",\"reason\":\"reason\"},{\"domain\":\"foo.com\",\"reason\":\"reason2\"}]}, " +
             "[\"example.com\"], {\"versionNumber\":1234,\"platform\":{\"name\":\"android\"}})"
         const val versionCode = 1234
-        val unprotectedTemporaryException = UnprotectedTemporaryException(domain = "example.com", reason = "reason")
-        val unprotectedTemporaryException2 = UnprotectedTemporaryException(domain = "foo.com", reason = "reason2")
+        val unprotectedTemporaryException =
+            com.duckduckgo.privacy.config.api.UnprotectedTemporaryException(
+                domain = "example.com",
+                reason = "reason"
+            )
+        val unprotectedTemporaryException2 =
+            com.duckduckgo.privacy.config.api.UnprotectedTemporaryException(
+                domain = "foo.com",
+                reason = "reason2"
+            )
     }
 }

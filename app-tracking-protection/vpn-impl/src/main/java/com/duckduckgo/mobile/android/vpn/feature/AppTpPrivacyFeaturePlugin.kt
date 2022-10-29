@@ -27,7 +27,7 @@ import javax.inject.Inject
 @ContributesMultibinding(AppScope::class)
 class AppTpPrivacyFeaturePlugin @Inject constructor(
     plugins: DaggerSet<AppTpSettingPlugin>,
-) : PrivacyFeaturePlugin {
+) : com.duckduckgo.privacy.config.api.PrivacyFeaturePlugin {
 
     private val settings = plugins.sortedBy { it.settingName.value }
 

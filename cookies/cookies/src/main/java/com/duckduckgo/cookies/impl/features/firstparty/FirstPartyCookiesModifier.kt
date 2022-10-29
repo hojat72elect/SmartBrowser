@@ -39,7 +39,7 @@ interface FirstPartyCookiesModifier {
 @ContributesBinding(AppScope::class)
 class RealFirstPartyCookiesModifier @Inject constructor(
     private val cookiesRepository: CookiesRepository,
-    private val unprotectedTemporary: UnprotectedTemporary,
+    private val unprotectedTemporary: com.duckduckgo.privacy.config.api.UnprotectedTemporary,
     private val userAllowListRepository: UserAllowListRepository,
     @Named("webViewDbLocator") private val webViewDatabaseLocator: DatabaseLocator,
     private val exceptionPixel: ExceptionPixel,

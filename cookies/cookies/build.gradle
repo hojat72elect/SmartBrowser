@@ -30,7 +30,7 @@ dependencies {
     implementation project(':di')
     implementation project(':common')
     implementation project(':app-build-config-api')
-    implementation project(':privacy-config-api')
+    implementation project(':privacy-config')
     implementation project(':feature-toggles-api')
     implementation project(':browser-api')
     implementation project(':statistics')
