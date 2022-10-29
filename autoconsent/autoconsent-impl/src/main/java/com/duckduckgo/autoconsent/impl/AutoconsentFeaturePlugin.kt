@@ -23,7 +23,6 @@ import com.duckduckgo.autoconsent.store.AutoconsentFeatureToggles
 import com.duckduckgo.autoconsent.store.AutoconsentRepository
 import com.duckduckgo.autoconsent.store.DisabledCmpsEntity
 import com.duckduckgo.di.scopes.AppScope
-import com.duckduckgo.privacy.config.api.PrivacyFeaturePlugin
 import com.squareup.anvil.annotations.ContributesMultibinding
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi

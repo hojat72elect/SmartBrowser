@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2022 DuckDuckGo
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.duckduckgo.autoconsent.api
 
 import android.webkit.WebView
@@ -24,6 +8,7 @@ interface Autoconsent {
      * This method injects the JS code needed to run autoconsent. It requires a [WebView] instance and the URL where the code will be injected.
      */
     fun injectAutoconsent(webView: WebView, url: String)
+
     /**
      * This method adds the JS interface for autoconsent to create a bridge between JS and our client.
      * It requires a [WebView] instance and an [AutoconsentCallback].

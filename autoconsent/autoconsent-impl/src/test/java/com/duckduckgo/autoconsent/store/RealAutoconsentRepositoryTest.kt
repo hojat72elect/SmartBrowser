@@ -1,19 +1,3 @@
-/*
- * Copyright (c) 2022 DuckDuckGo
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.duckduckgo.autoconsent.store
 
 import com.duckduckgo.app.CoroutineTestRule
@@ -45,14 +29,22 @@ class RealAutoconsentRepositoryTest {
     fun before() {
         whenever(mockDatabase.autoconsentDao()).thenReturn(mockDao)
 
-        repository = RealAutoconsentRepository(mockDatabase, TestScope(), coroutineRule.testDispatcherProvider)
+        repository = RealAutoconsentRepository(
+            mockDatabase,
+            TestScope(),
+            coroutineRule.testDispatcherProvider
+        )
     }
 
     @Test
     fun whenRepositoryIsCreatedThenExceptionsLoadedIntoMemory() {
         givenDaoContainsExceptionsAndDisabledCmps()
 
-        repository = RealAutoconsentRepository(mockDatabase, TestScope(), coroutineRule.testDispatcherProvider)
+        repository = RealAutoconsentRepository(
+            mockDatabase,
+            TestScope(),
+            coroutineRule.testDispatcherProvider
+        )
 
         assertEquals(exception, repository.exceptions.first())
         assertEquals(disabledCmp, repository.disabledCmps.first())
@@ -60,7 +52,11 @@ class RealAutoconsentRepositoryTest {
 
     @Test
     fun whenUpdateAllThenUpdateAllCalled() = runTest {
-        repository = RealAutoconsentRepository(mockDatabase, TestScope(), coroutineRule.testDispatcherProvider)
+        repository = RealAutoconsentRepository(
+            mockDatabase,
+            TestScope(),
+            coroutineRule.testDispatcherProvider
+        )
 
         repository.updateAll(listOf(), listOf())
 
@@ -70,7 +66,11 @@ class RealAutoconsentRepositoryTest {
     @Test
     fun whenUpdateAllThenPreviousExceptionsAreCleared() = runTest {
         givenDaoContainsExceptionsAndDisabledCmps()
-        repository = RealAutoconsentRepository(mockDatabase, TestScope(), coroutineRule.testDispatcherProvider)
+        repository = RealAutoconsentRepository(
+            mockDatabase,
+            TestScope(),
+            coroutineRule.testDispatcherProvider
+        )
 
         assertEquals(1, repository.exceptions.size)
         assertEquals(1, repository.disabledCmps.size)
@@ -88,7 +88,8 @@ class RealAutoconsentRepositoryTest {
     }
 
     companion object {
-        val exception = AutoconsentExceptionEntity("example.com", "reason")
+        val exception =
+            AutoconsentExceptionEntity("example.com", "reason")
         val disabledCmp = DisabledCmpsEntity("disabledcmp")
     }
 }

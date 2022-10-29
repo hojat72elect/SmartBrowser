@@ -17,6 +17,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'com.squareup.anvil'
 }
 
@@ -33,8 +34,6 @@ dependencies {
     implementation project(path: ':feature-toggles-api')
     implementation project(path: ':app-build-config-api')
     implementation project(path: ':app-store')
-    implementation project(path: ':autoconsent-api')
-    implementation project(path: ':autoconsent-store')
     implementation project(path: ':statistics')
 
     implementation Kotlin.stdlib.jdk7
@@ -53,7 +52,13 @@ dependencies {
     implementation AndroidX.core.ktx
     implementation AndroidX.lifecycle.viewModelKtx
     implementation AndroidX.lifecycle.runtimeKtx
+
+    // Room
     implementation AndroidX.room.runtime
+    implementation AndroidX.room.ktx
+    kapt AndroidX.room.compiler
+    testImplementation AndroidX.room.testing
+
     implementation AndroidX.constraintLayout
 
     // Testing dependencies

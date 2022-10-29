@@ -23,8 +23,6 @@ import com.duckduckgo.app.global.plugins.PluginPoint
 import com.duckduckgo.app.userwhitelist.api.UserWhiteListRepository
 import com.duckduckgo.autoconsent.api.AutoconsentCallback
 import com.duckduckgo.autoconsent.store.AutoconsentSettingsRepository
-import com.duckduckgo.privacy.config.api.UnprotectedTemporary
-import com.duckduckgo.privacy.config.api.UnprotectedTemporaryException
 
 class FakePluginPoint : PluginPoint<MessageHandlerPlugin> {
     val plugin = FakeMessageHandlerPlugin()

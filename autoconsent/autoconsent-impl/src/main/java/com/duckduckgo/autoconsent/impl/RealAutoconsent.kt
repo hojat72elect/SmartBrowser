@@ -31,7 +31,6 @@ import com.duckduckgo.autoconsent.store.AutoconsentRepository
 import com.duckduckgo.autoconsent.store.AutoconsentSettingsRepository
 import com.duckduckgo.di.scopes.AppScope
 import com.duckduckgo.feature.toggles.api.FeatureToggle
-import com.duckduckgo.privacy.config.api.UnprotectedTemporary
 import com.squareup.anvil.annotations.ContributesBinding
 import javax.inject.Inject
 
