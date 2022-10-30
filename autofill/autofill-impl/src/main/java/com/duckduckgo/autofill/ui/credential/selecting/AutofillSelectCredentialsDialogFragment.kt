@@ -28,10 +28,10 @@ import com.duckduckgo.anvil.annotations.InjectWith
 import com.duckduckgo.app.browser.favicon.FaviconManager
 import com.duckduckgo.app.global.extractDomain
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.CredentialAutofillPickerDialog
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.domain.app.LoginTriggerType
-import com.duckduckgo.autofill.domain.app.LoginTriggerType.AUTOPROMPT
+import com.duckduckgo.autofill.api.CredentialAutofillPickerDialog
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginTriggerType
+import com.duckduckgo.autofill.api.app.LoginTriggerType.AUTOPROMPT
 import com.duckduckgo.autofill.impl.R
 import com.duckduckgo.autofill.impl.databinding.ContentAutofillSelectCredentialsTooltipBinding
 import com.duckduckgo.autofill.pixel.AutofillPixelNames
@@ -55,7 +55,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectWith(FragmentScope::class)
-class AutofillSelectCredentialsDialogFragment : BottomSheetDialogFragment(), CredentialAutofillPickerDialog {
+class AutofillSelectCredentialsDialogFragment : BottomSheetDialogFragment(),
+    CredentialAutofillPickerDialog {
 
     @Inject
     lateinit var pixel: Pixel
@@ -171,7 +172,8 @@ class AutofillSelectCredentialsDialogFragment : BottomSheetDialogFragment(), Cre
         object Selected : DialogEvent
     }
 
-    private fun getAvailableCredentials() = arguments?.getParcelableArrayList<LoginCredentials>(CredentialAutofillPickerDialog.KEY_CREDENTIALS)!!
+    private fun getAvailableCredentials() = arguments?.getParcelableArrayList<LoginCredentials>(
+        CredentialAutofillPickerDialog.KEY_CREDENTIALS)!!
     private fun getOriginalUrl() = arguments?.getString(CredentialAutofillPickerDialog.KEY_URL)!!
     private fun getTriggerType() = arguments?.getSerializable(CredentialAutofillPickerDialog.KEY_TRIGGER_TYPE) as LoginTriggerType
     private fun getTabId() = arguments?.getString(CredentialAutofillPickerDialog.KEY_TAB_ID)!!

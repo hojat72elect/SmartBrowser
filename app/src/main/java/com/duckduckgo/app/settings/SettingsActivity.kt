@@ -59,7 +59,7 @@ import com.duckduckgo.app.sitepermissions.SitePermissionsActivity
 import com.duckduckgo.app.statistics.pixels.Pixel
 import com.duckduckgo.app.waitlist.trackerprotection.ui.AppTPWaitlistActivity
 import com.duckduckgo.app.widget.AddWidgetLauncher
-import com.duckduckgo.autofill.ui.AutofillSettingsActivityLauncher
+import com.duckduckgo.autofill.api.ui.AutofillSettingsActivityLauncher
 import com.duckduckgo.appbuildconfig.api.AppBuildConfig
 import com.duckduckgo.autoconsent.impl.ui.AutoconsentSettingsActivity
 import com.duckduckgo.di.scopes.ActivityScope

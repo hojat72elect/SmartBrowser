@@ -16,9 +16,9 @@
 
 package com.duckduckgo.autofill.ui.credential.saving
 
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.R
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.kotlin.mock

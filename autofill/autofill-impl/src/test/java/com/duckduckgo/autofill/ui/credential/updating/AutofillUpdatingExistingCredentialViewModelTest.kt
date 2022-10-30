@@ -16,7 +16,7 @@
 
 package com.duckduckgo.autofill.ui.credential.updating
 
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

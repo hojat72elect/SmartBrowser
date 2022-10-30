@@ -22,8 +22,9 @@ import com.duckduckgo.app.di.AppCoroutineScope
 import com.duckduckgo.app.global.DefaultDispatcherProvider
 import com.duckduckgo.app.global.DispatcherProvider
 import com.duckduckgo.app.utils.ConflatedJob
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.domain.app.LoginTriggerType
+import com.duckduckgo.autofill.api.Callback
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginTriggerType
 import com.duckduckgo.autofill.domain.javascript.JavascriptCredentials
 import com.duckduckgo.autofill.jsbridge.AutofillMessagePoster
 import com.duckduckgo.autofill.jsbridge.request.AutofillDataRequest
@@ -36,7 +37,7 @@ import com.duckduckgo.autofill.jsbridge.request.SupportedAutofillTriggerType
 import com.duckduckgo.autofill.jsbridge.request.SupportedAutofillTriggerType.AUTOPROMPT
 import com.duckduckgo.autofill.jsbridge.request.SupportedAutofillTriggerType.USER_INITIATED
 import com.duckduckgo.autofill.jsbridge.response.AutofillResponseWriter
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.di.scopes.AppScope
 import com.duckduckgo.di.scopes.FragmentScope
 import com.squareup.anvil.annotations.ContributesBinding

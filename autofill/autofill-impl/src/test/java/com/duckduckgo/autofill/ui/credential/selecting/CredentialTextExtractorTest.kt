@@ -18,7 +18,7 @@ package com.duckduckgo.autofill.ui.credential.selecting
 
 import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

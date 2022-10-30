@@ -17,7 +17,9 @@
 package com.duckduckgo.autofill
 
 import android.webkit.WebView
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.BrowserAutofill
+import com.duckduckgo.autofill.api.Callback
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.di.scopes.FragmentScope
 import com.squareup.anvil.annotations.ContributesBinding
 import timber.log.Timber

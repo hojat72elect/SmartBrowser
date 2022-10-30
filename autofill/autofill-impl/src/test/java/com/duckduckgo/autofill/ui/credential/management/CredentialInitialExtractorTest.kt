@@ -18,7 +18,7 @@ package com.duckduckgo.autofill.ui.credential.management
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.duckduckgo.autofill.AutofillDomainFormatterDomainNameOnly
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.ui.credential.management.sorting.CredentialInitialExtractor
 import com.duckduckgo.autofill.ui.credential.management.sorting.CredentialInitialExtractor.Companion.INITIAL_CHAR_FOR_NON_LETTERS
 import org.junit.Assert.assertEquals

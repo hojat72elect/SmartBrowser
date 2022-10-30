@@ -30,9 +30,9 @@ import com.duckduckgo.app.browser.favicon.FaviconManager
 import com.duckduckgo.app.global.FragmentViewModelFactory
 import com.duckduckgo.app.global.extractDomain
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.CredentialUpdateExistingCredentialsDialog
-import com.duckduckgo.autofill.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.CredentialUpdateExistingCredentialsDialog
+import com.duckduckgo.autofill.api.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.R
 import com.duckduckgo.autofill.impl.databinding.ContentAutofillUpdateExistingCredentialsBinding
 import com.duckduckgo.autofill.pixel.AutofillPixelNames
@@ -53,7 +53,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectWith(FragmentScope::class)
-class AutofillUpdatingExistingCredentialsDialogFragment : BottomSheetDialogFragment(), CredentialUpdateExistingCredentialsDialog {
+class AutofillUpdatingExistingCredentialsDialogFragment : BottomSheetDialogFragment(),
+    CredentialUpdateExistingCredentialsDialog {
 
     override fun getTheme(): Int = R.style.AutofillBottomSheetDialogTheme
 
@@ -203,7 +204,8 @@ class AutofillUpdatingExistingCredentialsDialogFragment : BottomSheetDialogFragm
         object Updated : DialogEvent
     }
 
-    private fun getCredentialsToSave() = arguments?.getParcelable<LoginCredentials>(CredentialUpdateExistingCredentialsDialog.KEY_CREDENTIALS)!!
+    private fun getCredentialsToSave() = arguments?.getParcelable<LoginCredentials>(
+        CredentialUpdateExistingCredentialsDialog.KEY_CREDENTIALS)!!
     private fun getTabId() = arguments?.getString(CredentialUpdateExistingCredentialsDialog.KEY_TAB_ID)!!
     private fun getOriginalUrl() = arguments?.getString(CredentialUpdateExistingCredentialsDialog.KEY_URL)!!
     private fun getUpdateType() =

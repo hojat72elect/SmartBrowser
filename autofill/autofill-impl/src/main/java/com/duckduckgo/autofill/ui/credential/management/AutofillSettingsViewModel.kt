@@ -20,10 +20,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.duckduckgo.anvil.annotations.ContributesViewModel
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_ENABLE_AUTOFILL_TOGGLE_MANUALLY_DISABLED
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_ENABLE_AUTOFILL_TOGGLE_MANUALLY_ENABLED
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.Command.*
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.CredentialMode.*
 import com.duckduckgo.di.scopes.ActivityScope

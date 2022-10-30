@@ -35,7 +35,7 @@ import com.duckduckgo.app.fire.fireproofwebsite.data.FireproofWebsiteRepository
 import com.duckduckgo.app.global.faviconLocation
 import com.duckduckgo.app.location.data.LocationPermissionsDao
 import com.duckduckgo.app.location.data.LocationPermissionsRepository
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import org.mockito.kotlin.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertNull

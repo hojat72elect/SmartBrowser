@@ -22,8 +22,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.duckduckgo.autofill.InlineBrowserAutofillTest.FakeAutofillJavascriptInterface.Actions.CredentialsInjected
 import com.duckduckgo.autofill.InlineBrowserAutofillTest.FakeAutofillJavascriptInterface.Actions.GetAutoFillData
 import com.duckduckgo.autofill.InlineBrowserAutofillTest.FakeAutofillJavascriptInterface.Actions.NoCredentialsInjected
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.domain.app.LoginTriggerType
+import com.duckduckgo.autofill.api.Callback
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginTriggerType
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull

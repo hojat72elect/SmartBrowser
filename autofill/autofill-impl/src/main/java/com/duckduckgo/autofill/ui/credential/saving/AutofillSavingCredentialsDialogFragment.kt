@@ -31,8 +31,8 @@ import com.duckduckgo.app.di.AppCoroutineScope
 import com.duckduckgo.app.global.FragmentViewModelFactory
 import com.duckduckgo.app.global.extractDomain
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.CredentialSavePickerDialog
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.CredentialSavePickerDialog
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.R
 import com.duckduckgo.autofill.impl.databinding.ContentAutofillSaveNewCredentialsBinding
 import com.duckduckgo.autofill.pixel.AutofillPixelNames
@@ -43,7 +43,7 @@ import com.duckduckgo.autofill.ui.credential.dialog.animateClosed
 import com.duckduckgo.autofill.ui.credential.saving.AutofillSavingCredentialsDialogFragment.DialogEvent.Accepted
 import com.duckduckgo.autofill.ui.credential.saving.AutofillSavingCredentialsDialogFragment.DialogEvent.Dismissed
 import com.duckduckgo.autofill.ui.credential.saving.AutofillSavingCredentialsDialogFragment.DialogEvent.Shown
-import com.duckduckgo.autofill.ui.credential.saving.declines.AutofillDeclineCounter
+import com.duckduckgo.autofill.api.ui.credential.saving.declines.AutofillDeclineCounter
 import com.duckduckgo.di.scopes.FragmentScope
 import com.duckduckgo.mobile.android.ui.view.gone
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -56,7 +56,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectWith(FragmentScope::class)
-class AutofillSavingCredentialsDialogFragment : BottomSheetDialogFragment(), CredentialSavePickerDialog {
+class AutofillSavingCredentialsDialogFragment : BottomSheetDialogFragment(),
+    CredentialSavePickerDialog {
 
     override fun getTheme(): Int = R.style.AutofillBottomSheetDialogTheme
 
@@ -189,7 +190,8 @@ class AutofillSavingCredentialsDialogFragment : BottomSheetDialogFragment(), Cre
         object Accepted : DialogEvent
     }
 
-    private fun getCredentialsToSave() = arguments?.getParcelable<LoginCredentials>(CredentialSavePickerDialog.KEY_CREDENTIALS)!!
+    private fun getCredentialsToSave() = arguments?.getParcelable<LoginCredentials>(
+        CredentialSavePickerDialog.KEY_CREDENTIALS)!!
     private fun getTabId() = arguments?.getString(CredentialSavePickerDialog.KEY_TAB_ID)!!
     private fun getOriginalUrl() = arguments?.getString(CredentialSavePickerDialog.KEY_URL)!!
 

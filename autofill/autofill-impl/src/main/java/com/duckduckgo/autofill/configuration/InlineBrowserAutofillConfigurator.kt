@@ -18,7 +18,7 @@ package com.duckduckgo.autofill.configuration
 import android.webkit.WebView
 import com.duckduckgo.app.autofill.JavascriptInjector
 import com.duckduckgo.app.di.AppCoroutineScope
-import com.duckduckgo.autofill.BrowserAutofill.Configurator
+import com.duckduckgo.autofill.api.BrowserAutofill.Configurator
 import com.duckduckgo.di.scopes.AppScope
 import com.squareup.anvil.annotations.ContributesBinding
 import kotlinx.coroutines.CoroutineScope

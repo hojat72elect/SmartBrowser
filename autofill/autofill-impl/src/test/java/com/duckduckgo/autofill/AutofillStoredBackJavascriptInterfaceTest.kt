@@ -21,8 +21,9 @@ import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.duckduckgo.app.CoroutineTestRule
 import com.duckduckgo.autofill.AutofillStoredBackJavascriptInterface.UrlProvider
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.domain.app.LoginTriggerType
+import com.duckduckgo.autofill.api.Callback
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginTriggerType
 import com.duckduckgo.autofill.jsbridge.AutofillMessagePoster
 import com.duckduckgo.autofill.jsbridge.request.AutofillDataRequest
 import com.duckduckgo.autofill.jsbridge.request.AutofillRequestParser
@@ -33,7 +34,7 @@ import com.duckduckgo.autofill.jsbridge.request.SupportedAutofillInputSubType.PA
 import com.duckduckgo.autofill.jsbridge.request.SupportedAutofillInputSubType.USERNAME
 import com.duckduckgo.autofill.jsbridge.request.SupportedAutofillTriggerType.USER_INITIATED
 import com.duckduckgo.autofill.jsbridge.response.AutofillResponseWriter
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope

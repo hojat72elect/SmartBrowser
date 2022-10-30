@@ -17,7 +17,7 @@
 package com.duckduckgo.autofill.ui.credential.management.sorting
 
 import com.duckduckgo.autofill.AutofillDomainFormatter
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.di.scopes.FragmentScope
 import com.squareup.anvil.annotations.ContributesBinding
 import java.text.Collator

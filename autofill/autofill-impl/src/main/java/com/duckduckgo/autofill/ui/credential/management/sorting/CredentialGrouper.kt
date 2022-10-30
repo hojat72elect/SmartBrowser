@@ -16,7 +16,7 @@
 
 package com.duckduckgo.autofill.ui.credential.management.sorting
 
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.ui.credential.management.AutofillManagementRecyclerAdapter.ListItem
 import java.util.*
 import javax.inject.Inject

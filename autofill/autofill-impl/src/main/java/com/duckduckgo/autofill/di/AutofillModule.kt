@@ -17,8 +17,8 @@
 package com.duckduckgo.autofill.di
 
 import android.content.Context
-import com.duckduckgo.autofill.InternalTestUserChecker
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.InternalTestUserChecker
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.autofill.store.InternalTestUserStore
 import com.duckduckgo.autofill.store.RealAutofillPrefsStore
 import com.duckduckgo.autofill.store.RealInternalTestUserStore

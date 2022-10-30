@@ -23,7 +23,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.duckduckgo.app.browser.favicon.FaviconManager
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.databinding.ItemRowAutofillCredentialsPickerBinding
 import com.duckduckgo.autofill.ui.credential.selecting.CredentialsPickerRecyclerAdapter.ButtonType.*
 import com.duckduckgo.autofill.ui.credential.selecting.CredentialsPickerRecyclerAdapter.CredentialsViewHolder

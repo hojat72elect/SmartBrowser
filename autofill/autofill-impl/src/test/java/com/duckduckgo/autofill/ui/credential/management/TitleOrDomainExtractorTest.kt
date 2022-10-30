@@ -17,7 +17,7 @@
 package com.duckduckgo.autofill.ui.credential.management
 
 import com.duckduckgo.autofill.AutofillDomainFormatter
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.kotlin.mock

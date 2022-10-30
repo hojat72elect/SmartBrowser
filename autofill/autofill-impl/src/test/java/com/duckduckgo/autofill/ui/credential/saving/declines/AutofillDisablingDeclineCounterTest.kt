@@ -17,7 +17,7 @@
 package com.duckduckgo.autofill.ui.credential.saving.declines
 
 import com.duckduckgo.app.CoroutineTestRule
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest

@@ -98,9 +98,9 @@ import com.duckduckgo.app.tabs.model.TabEntity
 import com.duckduckgo.app.tabs.model.TabRepository
 import com.duckduckgo.app.trackerdetection.model.TrackingEvent
 import com.duckduckgo.app.usage.search.SearchCountDao
-import com.duckduckgo.autofill.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.di.scopes.FragmentScope
 import com.duckduckgo.downloads.api.DownloadCommand
 import com.duckduckgo.downloads.api.DownloadStateListener

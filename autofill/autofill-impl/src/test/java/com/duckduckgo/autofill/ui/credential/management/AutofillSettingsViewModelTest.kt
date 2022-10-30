@@ -19,8 +19,8 @@ package com.duckduckgo.autofill.ui.credential.management
 import app.cash.turbine.test
 import com.duckduckgo.app.CoroutineTestRule
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.Command
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.Command.*
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.CredentialMode

@@ -17,7 +17,7 @@
 package com.duckduckgo.autofill.configuration
 
 import com.duckduckgo.app.email.EmailManager
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator
 import com.duckduckgo.di.scopes.AppScope
 import com.squareup.anvil.annotations.ContributesBinding

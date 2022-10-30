@@ -17,8 +17,8 @@
 package com.duckduckgo.autofill.configuration
 
 import com.duckduckgo.app.email.EmailManager
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

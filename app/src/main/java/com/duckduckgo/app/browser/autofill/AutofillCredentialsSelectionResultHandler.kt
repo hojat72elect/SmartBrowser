@@ -26,18 +26,18 @@ import com.duckduckgo.app.di.AppCoroutineScope
 import com.duckduckgo.app.global.DefaultDispatcherProvider
 import com.duckduckgo.app.global.DispatcherProvider
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.CredentialAutofillPickerDialog
-import com.duckduckgo.autofill.CredentialSavePickerDialog
-import com.duckduckgo.autofill.CredentialUpdateExistingCredentialsDialog
-import com.duckduckgo.autofill.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.CredentialAutofillPickerDialog
+import com.duckduckgo.autofill.api.CredentialSavePickerDialog
+import com.duckduckgo.autofill.api.CredentialUpdateExistingCredentialsDialog
+import com.duckduckgo.autofill.api.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.pixel.AutofillPixelNames
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_AUTOFILL_AUTH_CANCELLED
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_AUTOFILL_AUTH_FAILURE
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_AUTOFILL_AUTH_SUCCESSFUL
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_AUTOFILL_SHOWN
-import com.duckduckgo.autofill.store.AutofillStore
-import com.duckduckgo.autofill.ui.credential.saving.declines.AutofillDeclineCounter
+import com.duckduckgo.autofill.api.store.AutofillStore
+import com.duckduckgo.autofill.api.ui.credential.saving.declines.AutofillDeclineCounter
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator.AuthResult.Error
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator.AuthResult.Success
@@ -71,7 +71,8 @@ class AutofillCredentialsSelectionResultHandler @Inject constructor(
             return
         }
 
-        val selectedCredentials = result.getParcelable<LoginCredentials>(CredentialAutofillPickerDialog.KEY_CREDENTIALS) ?: return
+        val selectedCredentials = result.getParcelable<LoginCredentials>(
+            CredentialAutofillPickerDialog.KEY_CREDENTIALS) ?: return
 
         pixel.fire(AUTOFILL_AUTHENTICATION_TO_AUTOFILL_SHOWN)
         deviceAuthenticator.authenticate(AUTOFILL, browserTabFragment) {
@@ -151,7 +152,8 @@ class AutofillCredentialsSelectionResultHandler @Inject constructor(
         result: Bundle,
         credentialSaver: AutofillCredentialSaver
     ): LoginCredentials? {
-        val selectedCredentials = result.getParcelable<LoginCredentials>(CredentialUpdateExistingCredentialsDialog.KEY_CREDENTIALS) ?: return null
+        val selectedCredentials = result.getParcelable<LoginCredentials>(
+            CredentialUpdateExistingCredentialsDialog.KEY_CREDENTIALS) ?: return null
         val originalUrl = result.getString(CredentialUpdateExistingCredentialsDialog.KEY_URL) ?: return null
         val updateType =
             result.getParcelable<CredentialUpdateType>(CredentialUpdateExistingCredentialsDialog.KEY_CREDENTIAL_UPDATE_TYPE) ?: return null

@@ -19,7 +19,7 @@ package com.duckduckgo.autofill.internal
 import androidx.core.net.toUri
 import com.duckduckgo.appbuildconfig.api.AppBuildConfig
 import com.duckduckgo.appbuildconfig.api.isInternalBuild
-import com.duckduckgo.autofill.InternalTestUserChecker
+import com.duckduckgo.autofill.api.InternalTestUserChecker
 import com.duckduckgo.autofill.store.InternalTestUserStore
 import com.duckduckgo.di.scopes.AppScope
 import com.squareup.anvil.annotations.ContributesBinding

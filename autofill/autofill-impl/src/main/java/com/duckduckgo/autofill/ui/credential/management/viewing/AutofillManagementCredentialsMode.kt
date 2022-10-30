@@ -33,7 +33,7 @@ import com.duckduckgo.anvil.annotations.InjectWith
 import com.duckduckgo.app.browser.favicon.FaviconManager
 import com.duckduckgo.app.global.DuckDuckGoFragment
 import com.duckduckgo.app.global.FragmentViewModelFactory
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.R
 import com.duckduckgo.autofill.impl.databinding.FragmentAutofillManagementEditModeBinding
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel

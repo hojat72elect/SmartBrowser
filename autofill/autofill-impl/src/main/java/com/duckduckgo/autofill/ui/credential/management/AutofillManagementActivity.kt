@@ -26,14 +26,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.duckduckgo.anvil.annotations.InjectWith
 import com.duckduckgo.app.global.DuckDuckGoActivity
 import com.duckduckgo.app.statistics.pixels.Pixel
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.R
 import com.duckduckgo.autofill.impl.databinding.ActivityAutofillSettingsBinding
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_CREDENTIAL_MANAGEMENT_CANCELLED
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_CREDENTIAL_MANAGEMENT_FAILURE
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_CREDENTIAL_MANAGEMENT_SHOWN
 import com.duckduckgo.autofill.pixel.AutofillPixelNames.AUTOFILL_AUTHENTICATION_TO_CREDENTIAL_MANAGEMENT_SUCCESSFUL
-import com.duckduckgo.autofill.ui.AutofillSettingsActivityLauncher
+import com.duckduckgo.autofill.api.ui.AutofillSettingsActivityLauncher
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.Command.*
 import com.duckduckgo.autofill.ui.credential.management.AutofillSettingsViewModel.CredentialMode.*
 import com.duckduckgo.autofill.ui.credential.management.viewing.AutofillManagementCredentialsMode

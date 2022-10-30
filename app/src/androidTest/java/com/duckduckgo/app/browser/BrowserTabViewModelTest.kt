@@ -108,9 +108,9 @@ import com.duckduckgo.app.trackerdetection.model.TrackingEvent
 import com.duckduckgo.app.trackerdetection.model.TrackerType
 import com.duckduckgo.app.usage.search.SearchCountDao
 import com.duckduckgo.app.widget.ui.WidgetCapabilities
-import com.duckduckgo.autofill.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
-import com.duckduckgo.autofill.domain.app.LoginCredentials
-import com.duckduckgo.autofill.store.AutofillStore
+import com.duckduckgo.autofill.api.CredentialUpdateExistingCredentialsDialog.CredentialUpdateType
+import com.duckduckgo.autofill.api.app.LoginCredentials
+import com.duckduckgo.autofill.api.store.AutofillStore
 import com.duckduckgo.downloads.api.DownloadStateListener
 import com.duckduckgo.downloads.api.FileDownloader
 import com.duckduckgo.downloads.api.FileDownloader.PendingFileDownload
@@ -125,6 +125,7 @@ import com.duckduckgo.remote.messaging.api.Content
 import com.duckduckgo.remote.messaging.api.RemoteMessage
 import com.duckduckgo.remote.messaging.api.RemoteMessagingRepository
 import com.duckduckgo.site.permissions.api.SitePermissionsManager
+import com.duckduckgo.voice.api.VoiceSearchAvailability
 import com.duckduckgo.voice.api.VoiceSearchAvailabilityPixelLogger
 import org.mockito.kotlin.*
 import org.mockito.kotlin.any

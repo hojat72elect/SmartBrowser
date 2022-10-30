@@ -18,7 +18,7 @@ package com.duckduckgo.autofill.ui.credential.selecting
 
 import android.content.Context
 import com.duckduckgo.app.global.extractDomain
-import com.duckduckgo.autofill.domain.app.LoginCredentials
+import com.duckduckgo.autofill.api.app.LoginCredentials
 import com.duckduckgo.autofill.impl.R
 
 class CredentialTextExtractor(private val applicationContext: Context) {
