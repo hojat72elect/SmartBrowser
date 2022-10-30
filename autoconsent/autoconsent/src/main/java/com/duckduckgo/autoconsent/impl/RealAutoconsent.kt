@@ -39,7 +39,7 @@ class RealAutoconsent @Inject constructor(
     private val messageHandlerPlugins: PluginPoint<MessageHandlerPlugin>,
     private val settingsRepository: AutoconsentSettingsRepository,
     private val autoconsentRepository: AutoconsentRepository,
-    private val featureToggle: FeatureToggle,
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle,
     private val userAllowlistRepository: UserWhiteListRepository,
     private val unprotectedTemporary: com.duckduckgo.privacy.config.api.UnprotectedTemporary,
 ) : Autoconsent {

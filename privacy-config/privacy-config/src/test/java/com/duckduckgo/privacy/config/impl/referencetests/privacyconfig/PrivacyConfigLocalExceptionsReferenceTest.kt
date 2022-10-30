@@ -52,7 +52,7 @@ class PrivacyConfigLocalExceptionsReferenceTest(private val testCase: TestCase) 
     private lateinit var testee: RealContentBlocking
     private lateinit var privacyConfigPersister: RealPrivacyConfigPersister
     private val mockTogglesRepository: PrivacyFeatureTogglesRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
 
     private lateinit var db: PrivacyConfigDatabase
     private lateinit var referenceTestUtilities: ReferenceTestUtilities

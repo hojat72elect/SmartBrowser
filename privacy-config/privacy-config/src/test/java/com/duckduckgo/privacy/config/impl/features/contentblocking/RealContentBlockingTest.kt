@@ -37,7 +37,7 @@ class RealContentBlockingTest {
 
     private val mockContentBlockingRepository: ContentBlockingRepository = mock()
     private val mockUnprotectedTemporary: UnprotectedTemporary = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
 
     @Before
     fun before() {

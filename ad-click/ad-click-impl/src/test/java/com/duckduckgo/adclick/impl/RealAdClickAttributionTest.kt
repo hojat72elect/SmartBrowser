@@ -35,7 +35,7 @@ import org.mockito.kotlin.whenever
 class RealAdClickAttributionTest {
 
     private val mockAdClickAttributionRepository: AdClickAttributionRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private lateinit var testee: RealAdClickAttribution
 
     @Test

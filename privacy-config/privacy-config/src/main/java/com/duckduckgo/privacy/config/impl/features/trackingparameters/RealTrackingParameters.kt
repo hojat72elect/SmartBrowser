@@ -41,7 +41,7 @@ import javax.inject.Inject
 @SingleInstanceIn(AppScope::class)
 class RealTrackingParameters @Inject constructor(
     private val trackingParametersRepository: TrackingParametersRepository,
-    private val featureToggle: FeatureToggle,
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle,
     private val unprotectedTemporary: UnprotectedTemporary,
     val userWhiteListRepository: UserWhiteListRepository
 ) : TrackingParameters {

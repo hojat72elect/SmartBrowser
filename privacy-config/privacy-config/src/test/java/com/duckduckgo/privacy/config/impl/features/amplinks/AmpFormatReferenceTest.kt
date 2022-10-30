@@ -44,7 +44,7 @@ class AmpFormatReferenceTest(private val testCase: TestCase) {
 
     private val mockRepository: AmpLinksRepository = mock()
     private val mockUnprotectedTemporary: UnprotectedTemporary = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
 
     @Before
     fun setup() {

@@ -33,7 +33,7 @@ import javax.inject.Inject
 @SingleInstanceIn(AppScope::class)
 class RealAmpLinks @Inject constructor(
     private val ampLinksRepository: AmpLinksRepository,
-    private val featureToggle: FeatureToggle,
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle,
     private val unprotectedTemporary: UnprotectedTemporary
 ) : AmpLinks {
 

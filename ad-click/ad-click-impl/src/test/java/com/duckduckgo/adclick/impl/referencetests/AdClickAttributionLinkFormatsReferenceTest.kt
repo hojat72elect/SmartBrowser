@@ -28,7 +28,7 @@ class AdClickAttributionLinkFormatsReferenceTest(private val testCase: TestCase)
     lateinit var testee: AdClickAttribution
 
     private val mockRepository: AdClickAttributionRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
 
     @Before
     fun setup() {

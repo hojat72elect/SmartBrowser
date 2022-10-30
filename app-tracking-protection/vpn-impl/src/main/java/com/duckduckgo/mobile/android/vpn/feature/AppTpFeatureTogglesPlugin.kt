@@ -27,7 +27,7 @@ import javax.inject.Inject
 class AppTpFeatureTogglesPlugin @Inject constructor(
     private val appTpFeatureToggleRepository: AppTpFeatureToggleRepository,
     private val appBuildConfig: AppBuildConfig
-) : FeatureTogglesPlugin {
+) : com.duckduckgo.feature.toggles.api.FeatureTogglesPlugin {
     override fun isEnabled(featureName: String, defaultValue: Boolean): Boolean? {
         val appTpFeatureName = appTpFeatureValueOf(featureName) ?: return null
         return appTpFeatureToggleRepository.get(appTpFeatureName, defaultValue) &&

@@ -39,7 +39,7 @@ import org.robolectric.ParameterizedRobolectricTestRunner
 class TrackerAllowlistReferenceTest(private val testCase: TestCase) {
 
     private val mockTrackerAllowlistRepository: TrackerAllowlistRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
 
     companion object {
         private val moshi = Moshi.Builder().build()

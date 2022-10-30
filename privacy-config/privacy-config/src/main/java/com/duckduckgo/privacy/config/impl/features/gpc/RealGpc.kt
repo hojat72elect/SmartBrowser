@@ -31,7 +31,7 @@ import dagger.SingleInstanceIn
 @ContributesBinding(AppScope::class)
 @SingleInstanceIn(AppScope::class)
 class RealGpc @Inject constructor(
-    private val featureToggle: FeatureToggle,
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle,
     val gpcRepository: GpcRepository,
     private val unprotectedTemporary: UnprotectedTemporary
 ) : Gpc {

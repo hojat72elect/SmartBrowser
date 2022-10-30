@@ -39,7 +39,7 @@ class RealAutoconsentTest {
     private val unprotected = FakeUnprotected(listOf("unprotected.com"))
     private val userAllowlist = FakeUserAllowlist(listOf("userallowed.com"))
     private val mockAutoconsentRepository: AutoconsentRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private val webView: WebView = WebView(InstrumentationRegistry.getInstrumentation().targetContext)
 
     lateinit var autoconsent: RealAutoconsent

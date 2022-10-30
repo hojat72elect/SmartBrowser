@@ -27,7 +27,7 @@ import javax.inject.Inject
 class AdClickFeatureTogglesPlugin @Inject constructor(
     private val adClickFeatureToggleRepository: AdClickFeatureToggleRepository,
     private val appBuildConfig: AppBuildConfig
-) : FeatureTogglesPlugin {
+) : com.duckduckgo.feature.toggles.api.FeatureTogglesPlugin {
     override fun isEnabled(featureName: String, defaultValue: Boolean): Boolean? {
         val adClickFeature = adClickFeatureValueOf(featureName) ?: return null
         return adClickFeatureToggleRepository.get(adClickFeature, defaultValue) &&

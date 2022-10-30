@@ -37,7 +37,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class RealGpcTest {
     private val mockGpcRepository: GpcRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private val mockUnprotectedTemporary: UnprotectedTemporary = mock()
     lateinit var testee: RealGpc
 

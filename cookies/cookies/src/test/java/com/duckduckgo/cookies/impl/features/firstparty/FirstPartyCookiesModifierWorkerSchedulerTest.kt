@@ -33,7 +33,7 @@ import org.mockito.kotlin.whenever
 
 class FirstPartyCookiesModifierWorkerSchedulerTest {
 
-    private val mockToggle: FeatureToggle = mock()
+    private val mockToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private val mockWorkManager: WorkManager = mock()
     private val mockOwner: LifecycleOwner = mock()
 

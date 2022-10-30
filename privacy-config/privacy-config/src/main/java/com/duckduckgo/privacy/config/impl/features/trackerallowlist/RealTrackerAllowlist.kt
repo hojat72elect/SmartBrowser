@@ -33,7 +33,7 @@ import dagger.SingleInstanceIn
 @SingleInstanceIn(AppScope::class)
 class RealTrackerAllowlist @Inject constructor(
     private val trackerAllowlistRepository: TrackerAllowlistRepository,
-    private val featureToggle: FeatureToggle
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle
 ) : TrackerAllowlist {
 
     override fun isAnException(

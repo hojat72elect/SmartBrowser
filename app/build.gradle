@@ -177,8 +177,7 @@ dependencies {
     implementation project(':vpn-store')
     internalImplementation project(':vpn-internal')
 
-    implementation project(':feature-toggles-api')
-    implementation project(':feature-toggles-impl')
+    implementation project(':feature-toggles')
     implementation project(':privacy-config')
     implementation project(':anrs-api')
     implementation project(':anrs-store')

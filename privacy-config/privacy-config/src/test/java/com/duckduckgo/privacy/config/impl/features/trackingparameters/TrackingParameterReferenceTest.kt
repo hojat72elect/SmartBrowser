@@ -44,7 +44,7 @@ class TrackingParameterReferenceTest(private val testCase: TestCase) {
 
     private val mockRepository: TrackingParametersRepository = mock()
     private val mockUnprotectedTemporary: UnprotectedTemporary = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private val mockUserWhiteListRepository: UserWhiteListRepository = mock()
 
     @Before

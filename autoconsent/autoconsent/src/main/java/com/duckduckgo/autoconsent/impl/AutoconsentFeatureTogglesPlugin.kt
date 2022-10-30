@@ -27,7 +27,7 @@ import javax.inject.Inject
 class AutoconsentFeatureTogglesPlugin @Inject constructor(
     private val autoconsentFeatureToggleRepository: AutoconsentFeatureToggleRepository,
     private val appBuildConfig: AppBuildConfig
-) : FeatureTogglesPlugin {
+) : com.duckduckgo.feature.toggles.api.FeatureTogglesPlugin {
     override fun isEnabled(featureName: String, defaultValue: Boolean): Boolean? {
         val autoconsentFeature = autoconsentFeatureValueOf(featureName) ?: return null
         return autoconsentFeatureToggleRepository.get(autoconsentFeature, defaultValue) &&

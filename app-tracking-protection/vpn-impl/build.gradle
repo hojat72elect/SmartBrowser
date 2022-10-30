@@ -53,7 +53,7 @@ dependencies {
     implementation project(path: ':common-ui')
     implementation project(path: ':statistics')
     implementation project(path: ':app-build-config-api')
-    implementation project(path: ':feature-toggles-api')
+    implementation project(path: ':feature-toggles')
     implementation project(path: ':privacy-config')
     implementation project(path: ':vpn-network-api')
     implementation project(path: ':statistics')

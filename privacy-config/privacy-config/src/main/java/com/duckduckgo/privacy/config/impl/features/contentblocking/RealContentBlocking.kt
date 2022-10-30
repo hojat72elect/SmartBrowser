@@ -31,7 +31,7 @@ import dagger.SingleInstanceIn
 @SingleInstanceIn(AppScope::class)
 class RealContentBlocking @Inject constructor(
     private val contentBlockingRepository: ContentBlockingRepository,
-    private val featureToggle: FeatureToggle,
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle,
     private val unprotectedTemporary: UnprotectedTemporary
 ) : ContentBlocking {
 

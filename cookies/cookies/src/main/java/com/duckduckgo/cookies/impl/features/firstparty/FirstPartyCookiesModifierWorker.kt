@@ -67,7 +67,7 @@ class FirstPartyCookiesModifierWorker(
 @SingleInstanceIn(AppScope::class)
 class FirstPartyCookiesModifierWorkerScheduler @Inject constructor(
     private val workManager: WorkManager,
-    private val toggle: FeatureToggle
+    private val toggle: com.duckduckgo.feature.toggles.api.FeatureToggle
 ) : DefaultLifecycleObserver {
 
     private val workerRequest = PeriodicWorkRequestBuilder<FirstPartyCookiesModifierWorker>(1, DAYS)

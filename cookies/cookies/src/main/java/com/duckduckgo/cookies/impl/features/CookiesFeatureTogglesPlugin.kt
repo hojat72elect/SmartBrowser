@@ -28,7 +28,7 @@ import javax.inject.Inject
 class CookiesFeatureTogglesPlugin @Inject constructor(
     private val cookiesFeatureToggleRepository: CookiesFeatureToggleRepository,
     private val appBuildConfig: AppBuildConfig
-) : FeatureTogglesPlugin {
+) : com.duckduckgo.feature.toggles.api.FeatureTogglesPlugin {
     override fun isEnabled(featureName: String, defaultValue: Boolean): Boolean? {
         val cookiesFeature = cookiesFeatureValueOf(featureName) ?: return null
         return cookiesFeatureToggleRepository.get(cookiesFeature, defaultValue) &&

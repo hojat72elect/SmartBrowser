@@ -47,7 +47,7 @@ class GpcHeaderReferenceTest(private val testCase: TestCase) {
 
     private val mockUnprotectedTemporaryRepository: UnprotectedTemporaryRepository = mock()
     private val mockGpcRepository: GpcRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     lateinit var gpc: Gpc
 
     companion object {

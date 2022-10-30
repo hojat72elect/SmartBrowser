@@ -28,7 +28,7 @@ import javax.inject.Inject
 class PrivacyFeatureTogglesPlugin @Inject constructor(
     private val privacyFeatureTogglesRepository: PrivacyFeatureTogglesRepository,
     private val appBuildConfig: AppBuildConfig
-) : FeatureTogglesPlugin {
+) : com.duckduckgo.feature.toggles.api.FeatureTogglesPlugin {
 
     override fun isEnabled(
         featureName: String,

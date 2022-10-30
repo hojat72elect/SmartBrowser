@@ -33,7 +33,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 class RealTrackerAllowlistTest {
 
     private val mockTrackerAllowlistRepository: TrackerAllowlistRepository = mock()
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private lateinit var testee: RealTrackerAllowlist
 
     @Before

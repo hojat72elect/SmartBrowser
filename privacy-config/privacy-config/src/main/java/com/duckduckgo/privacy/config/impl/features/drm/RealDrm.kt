@@ -32,7 +32,7 @@ import javax.inject.Inject
 @ContributesBinding(AppScope::class)
 @SingleInstanceIn(AppScope::class)
 class RealDrm @Inject constructor(
-    private val featureToggle: FeatureToggle,
+    private val featureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle,
     private val drmRepository: DrmRepository
 ) : Drm {
 

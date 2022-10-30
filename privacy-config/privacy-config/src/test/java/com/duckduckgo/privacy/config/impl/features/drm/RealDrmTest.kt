@@ -34,7 +34,7 @@ import java.util.concurrent.CopyOnWriteArrayList
 @RunWith(AndroidJUnit4::class)
 class RealDrmTest {
 
-    private val mockFeatureToggle: FeatureToggle = mock()
+    private val mockFeatureToggle: com.duckduckgo.feature.toggles.api.FeatureToggle = mock()
     private val mockDrmRepository: DrmRepository = mock()
 
     val testee: RealDrm = RealDrm(mockFeatureToggle, mockDrmRepository)
