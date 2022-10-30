@@ -160,7 +160,7 @@ dependencies {
 
     implementation project(':library-loader-api')
 
-    implementation project(':autofill-impl')
+    implementation project(':autofill')
 
     anvil project(':anvil-compiler')
     implementation project(':anvil-annotations')
