@@ -41,7 +41,6 @@ import com.duckduckgo.autofill.ui.credential.management.viewing.AutofillManageme
 import com.duckduckgo.autofill.ui.credential.management.viewing.AutofillManagementListMode
 import com.duckduckgo.autofill.ui.credential.management.viewing.AutofillManagementLockedMode
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator
-import com.duckduckgo.deviceauth.api.DeviceAuthenticator.AuthResult.Error
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator.AuthResult.Success
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator.AuthResult.UserCancelled
 import com.duckduckgo.deviceauth.api.DeviceAuthenticator.Features.AUTOFILL
@@ -63,7 +62,7 @@ class AutofillManagementActivity : DuckDuckGoActivity() {
     private val viewModel: AutofillSettingsViewModel by bindViewModel()
 
     @Inject
-    lateinit var deviceAuthenticator: DeviceAuthenticator
+    lateinit var deviceAuthenticator: com.duckduckgo.deviceauth.api.DeviceAuthenticator
 
     @Inject
     lateinit var pixel: Pixel
@@ -107,6 +106,7 @@ class AutofillManagementActivity : DuckDuckGoActivity() {
                     Success -> onAuthenticationSuccessful()
                     UserCancelled -> onAuthenticationCancelled()
                     is Error -> onAuthenticationError()
+                    else -> {}
                 }
                 viewModel.onAuthenticationEnded()
             }

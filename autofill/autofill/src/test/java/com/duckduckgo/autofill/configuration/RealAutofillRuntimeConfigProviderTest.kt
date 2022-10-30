@@ -37,7 +37,7 @@ class RealAutofillRuntimeConfigProviderTest {
     private lateinit var emailManager: EmailManager
 
     @Mock
-    private lateinit var deviceAuthenticator: DeviceAuthenticator
+    private lateinit var deviceAuthenticator: com.duckduckgo.deviceauth.api.DeviceAuthenticator
 
     @Mock
     private lateinit var autofillStore: AutofillStore

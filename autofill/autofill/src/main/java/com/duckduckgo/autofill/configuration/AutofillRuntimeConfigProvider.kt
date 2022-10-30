@@ -34,7 +34,7 @@ interface AutofillRuntimeConfigProvider {
 @ContributesBinding(AppScope::class)
 class RealAutofillRuntimeConfigProvider @Inject constructor(
     private val emailManager: EmailManager,
-    private val deviceAuthenticator: DeviceAuthenticator,
+    private val deviceAuthenticator: com.duckduckgo.deviceauth.api.DeviceAuthenticator,
     private val autofillStore: AutofillStore,
     private val runtimeConfigurationWriter: RuntimeConfigurationWriter
 ) : AutofillRuntimeConfigProvider {

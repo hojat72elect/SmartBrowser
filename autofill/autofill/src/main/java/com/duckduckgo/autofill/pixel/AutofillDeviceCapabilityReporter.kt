@@ -37,7 +37,7 @@ import javax.inject.Inject
 class AutofillDeviceCapabilityReporter @Inject constructor(
     private val pixel: AutofillPixelSender,
     private val secureStorage: SecureStorage,
-    private val deviceAuthenticator: DeviceAuthenticator,
+    private val deviceAuthenticator: com.duckduckgo.deviceauth.api.DeviceAuthenticator,
     @AppCoroutineScope private val appCoroutineScope: CoroutineScope
 ) : DefaultLifecycleObserver {
 

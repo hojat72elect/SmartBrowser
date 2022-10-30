@@ -25,7 +25,6 @@ apply from: "$rootProject.projectDir/gradle/android-library.gradle"
 
 dependencies {
     implementation project(path: ':app-build-config-api')
-    implementation project(path: ':device-auth-api')
     implementation project(path: ':di')
     implementation AndroidX.biometric
     implementation Google.dagger
