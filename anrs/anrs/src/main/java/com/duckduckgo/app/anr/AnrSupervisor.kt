@@ -19,7 +19,7 @@ package com.duckduckgo.app.anr
 import android.os.Debug
 import android.os.Handler
 import android.os.Looper
-import com.duckduckgo.app.anrs.store.AnrsDatabase
+import com.duckduckgo.app.anr.store.AnrsDatabase
 import com.duckduckgo.browser.api.BrowserLifecycleObserver
 import com.duckduckgo.di.scopes.AppScope
 import com.squareup.anvil.annotations.ContributesMultibinding

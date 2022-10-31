@@ -16,10 +16,10 @@
 
 package com.duckduckgo.app.anr
 
-import com.duckduckgo.anrs.api.Anr
-import com.duckduckgo.anrs.api.AnrRepository
-import com.duckduckgo.app.anrs.store.AnrEntity
-import com.duckduckgo.app.anrs.store.AnrsDatabase
+import com.duckduckgo.app.anr.api.Anr
+import com.duckduckgo.app.anr.api.AnrRepository
+import com.duckduckgo.app.anr.store.AnrEntity
+import com.duckduckgo.app.anr.store.AnrsDatabase
 import com.duckduckgo.di.scopes.AppScope
 import com.squareup.anvil.annotations.ContributesBinding
 import javax.inject.Inject

@@ -179,9 +179,7 @@ dependencies {
 
     implementation project(':feature-toggles')
     implementation project(':privacy-config')
-    implementation project(':anrs-api')
-    implementation project(':anrs-store')
-    implementation project(':anrs-impl')
+    implementation project(':anrs')
 
     implementation project(':macos')
     implementation project(':remote-messaging')

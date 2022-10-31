@@ -16,7 +16,7 @@
 
 package com.duckduckgo.app.anr
 
-import com.duckduckgo.app.anrs.store.AnrEntity
+import com.duckduckgo.app.anr.store.AnrEntity
 import okio.ByteString.Companion.encode
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter

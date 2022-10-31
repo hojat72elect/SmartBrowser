@@ -17,7 +17,7 @@
 package com.duckduckgo.app.anr
 
 import android.util.Base64
-import com.duckduckgo.anrs.api.AnrRepository
+import com.duckduckgo.app.anr.api.AnrRepository
 import com.duckduckgo.app.statistics.api.OfflinePixel
 import com.duckduckgo.app.statistics.api.PixelSender
 import com.duckduckgo.app.statistics.pixels.Pixel
