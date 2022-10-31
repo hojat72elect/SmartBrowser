@@ -441,28 +441,33 @@ class SecureStoreBackedAutofillStoreTest {
         lastUpdatedTimeMillis: Long = DEFAULT_INITIAL_LAST_UPDATED,
         notes: String = "notes"
     ) {
-        val details = WebsiteLoginDetails(
+        val details = com.duckduckgo.securestorage.api.WebsiteLoginDetails(
             domain = domain,
             username = username,
             id = id,
             lastUpdatedMillis = lastUpdatedTimeMillis
         )
-        val credentials = WebsiteLoginDetailsWithCredentials(details, password, notes)
+        val credentials = com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials(
+            details,
+            password,
+            notes
+        )
         secureStore.addWebsiteLoginDetailsWithCredentials(credentials)
     }
 
-    private class FakeSecureStore(val canAccessSecureStorage: Boolean) : SecureStorage {
+    private class FakeSecureStore(val canAccessSecureStorage: Boolean) :
+        com.duckduckgo.securestorage.api.SecureStorage {
 
-        private val credentials = mutableListOf<WebsiteLoginDetailsWithCredentials>()
+        private val credentials = mutableListOf<com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials>()
 
         override suspend fun addWebsiteLoginDetailsWithCredentials(
-            websiteLoginDetailsWithCredentials: WebsiteLoginDetailsWithCredentials
-        ): WebsiteLoginDetailsWithCredentials {
+            websiteLoginDetailsWithCredentials: com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials
+        ): com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials {
             credentials.add(websiteLoginDetailsWithCredentials)
             return websiteLoginDetailsWithCredentials
         }
 
-        override suspend fun websiteLoginDetailsForDomain(domain: String): Flow<List<WebsiteLoginDetails>> {
+        override suspend fun websiteLoginDetailsForDomain(domain: String): Flow<List<com.duckduckgo.securestorage.api.WebsiteLoginDetails>> {
             return flow {
                 emit(
                     credentials.filter {
@@ -474,17 +479,17 @@ class SecureStoreBackedAutofillStoreTest {
             }
         }
 
-        override suspend fun websiteLoginDetails(): Flow<List<WebsiteLoginDetails>> {
+        override suspend fun websiteLoginDetails(): Flow<List<com.duckduckgo.securestorage.api.WebsiteLoginDetails>> {
             return flow {
                 emit(credentials.map { it.details })
             }
         }
 
-        override suspend fun getWebsiteLoginDetailsWithCredentials(id: Long): WebsiteLoginDetailsWithCredentials? {
+        override suspend fun getWebsiteLoginDetailsWithCredentials(id: Long): com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials? {
             return credentials.firstOrNull { it.details.id == id }
         }
 
-        override suspend fun websiteLoginDetailsWithCredentialsForDomain(domain: String): Flow<List<WebsiteLoginDetailsWithCredentials>> {
+        override suspend fun websiteLoginDetailsWithCredentialsForDomain(domain: String): Flow<List<com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials>> {
             return flow {
                 emit(
                     credentials.filter {
@@ -494,15 +499,15 @@ class SecureStoreBackedAutofillStoreTest {
             }
         }
 
-        override suspend fun websiteLoginDetailsWithCredentials(): Flow<List<WebsiteLoginDetailsWithCredentials>> {
+        override suspend fun websiteLoginDetailsWithCredentials(): Flow<List<com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials>> {
             return flow {
                 emit(credentials)
             }
         }
 
         override suspend fun updateWebsiteLoginDetailsWithCredentials(
-            websiteLoginDetailsWithCredentials: WebsiteLoginDetailsWithCredentials
-        ): WebsiteLoginDetailsWithCredentials {
+            websiteLoginDetailsWithCredentials: com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials
+        ): com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials {
             credentials.indexOfFirst { it.details.id == websiteLoginDetailsWithCredentials.details.id }
                 .also {
                     credentials[it] = websiteLoginDetailsWithCredentials

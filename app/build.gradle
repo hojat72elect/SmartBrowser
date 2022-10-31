@@ -190,11 +190,7 @@ dependencies {
     internalImplementation project(':traces')
     implementation project(':site-permissions')
     implementation project(':bandwidth')
-
-    implementation project(':secure-storage-api')
-    implementation project(':secure-storage-impl')
-    implementation project(':secure-storage-store')
-
+    implementation project(':secure-storage')
     implementation project(':device-auth')
 
     implementation project(':ad-click-api')

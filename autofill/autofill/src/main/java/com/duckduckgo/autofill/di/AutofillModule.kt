@@ -41,7 +41,7 @@ class AutofillModule {
     @Provides
     @SingleInstanceIn(AppScope::class)
     fun autofillStore(
-        secureStorage: SecureStorage,
+        secureStorage: com.duckduckgo.securestorage.api.SecureStorage,
         context: Context,
         internalTestUserChecker: InternalTestUserChecker
     ): AutofillStore {

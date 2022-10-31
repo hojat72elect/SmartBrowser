@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class SecureStoreBackedAutofillStore(
-    private val secureStorage: SecureStorage,
+    private val secureStorage: com.duckduckgo.securestorage.api.SecureStorage,
     private val internalTestUserChecker: com.duckduckgo.autofill.api.InternalTestUserChecker,
     private val lastUpdatedTimeProvider: LastUpdatedTimeProvider,
     private val autofillPrefsStore: AutofillPrefsStore,
@@ -92,14 +92,17 @@ class SecureStoreBackedAutofillStore(
 
         Timber.i("Saving login credentials for %s. username=%s", url, credentials.username)
 
-        val loginDetails = WebsiteLoginDetails(
+        val loginDetails = com.duckduckgo.securestorage.api.WebsiteLoginDetails(
             domain = url,
             username = credentials.username,
             domainTitle = credentials.domainTitle,
             lastUpdatedMillis = lastUpdatedTimeProvider.getInMillis()
         )
         val webSiteLoginCredentials =
-            WebsiteLoginDetailsWithCredentials(loginDetails, password = credentials.password)
+            com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials(
+                loginDetails,
+                password = credentials.password
+            )
 
         return withContext(dispatcherProvider.io()) {
             secureStorage.addWebsiteLoginDetailsWithCredentials(webSiteLoginCredentials)
@@ -143,7 +146,7 @@ class SecureStoreBackedAutofillStore(
             credentials.username
         )
 
-        var updatedCredentials: WebsiteLoginDetailsWithCredentials? = null
+        var updatedCredentials: com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials? = null
 
         matchingCredentials.forEach {
             val modifiedDetails = it.details.copy(
@@ -157,10 +160,10 @@ class SecureStoreBackedAutofillStore(
         return updatedCredentials?.toLoginCredentials()
     }
 
-    private fun filterMatchingUsername(credentials: com.duckduckgo.autofill.api.app.LoginCredentials): (WebsiteLoginDetailsWithCredentials) -> Boolean =
+    private fun filterMatchingUsername(credentials: com.duckduckgo.autofill.api.app.LoginCredentials): (com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials) -> Boolean =
         { it.details.username == credentials.username }
 
-    private fun filterMatchingPassword(credentials: com.duckduckgo.autofill.api.app.LoginCredentials): (WebsiteLoginDetailsWithCredentials) -> Boolean =
+    private fun filterMatchingPassword(credentials: com.duckduckgo.autofill.api.app.LoginCredentials): (com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials) -> Boolean =
         {
             it.password == credentials.password && it.details.username.isNullOrEmpty()
         }
@@ -224,7 +227,7 @@ class SecureStoreBackedAutofillStore(
         }
     }
 
-    private fun WebsiteLoginDetailsWithCredentials.toLoginCredentials(): com.duckduckgo.autofill.api.app.LoginCredentials {
+    private fun com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials.toLoginCredentials(): com.duckduckgo.autofill.api.app.LoginCredentials {
         return com.duckduckgo.autofill.api.app.LoginCredentials(
             id = details.id,
             domain = details.domain,
@@ -236,9 +239,9 @@ class SecureStoreBackedAutofillStore(
         )
     }
 
-    private fun com.duckduckgo.autofill.api.app.LoginCredentials.toWebsiteLoginCredentials(): WebsiteLoginDetailsWithCredentials {
-        return WebsiteLoginDetailsWithCredentials(
-            details = WebsiteLoginDetails(
+    private fun com.duckduckgo.autofill.api.app.LoginCredentials.toWebsiteLoginCredentials(): com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials {
+        return com.duckduckgo.securestorage.api.WebsiteLoginDetailsWithCredentials(
+            details = com.duckduckgo.securestorage.api.WebsiteLoginDetails(
                 domain = domain,
                 username = username,
                 id = id,

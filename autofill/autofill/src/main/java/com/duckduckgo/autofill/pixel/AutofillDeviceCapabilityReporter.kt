@@ -21,7 +21,6 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.duckduckgo.app.di.AppCoroutineScope
-import com.duckduckgo.deviceauth.api.DeviceAuthenticator
 import com.duckduckgo.di.scopes.AppScope
 import com.duckduckgo.securestorage.api.SecureStorage
 import com.squareup.anvil.annotations.ContributesMultibinding
@@ -36,7 +35,7 @@ import javax.inject.Inject
 )
 class AutofillDeviceCapabilityReporter @Inject constructor(
     private val pixel: AutofillPixelSender,
-    private val secureStorage: SecureStorage,
+    private val secureStorage: com.duckduckgo.securestorage.api.SecureStorage,
     private val deviceAuthenticator: com.duckduckgo.deviceauth.api.DeviceAuthenticator,
     @AppCoroutineScope private val appCoroutineScope: CoroutineScope
 ) : DefaultLifecycleObserver {
