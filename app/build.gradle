@@ -184,8 +184,7 @@ dependencies {
     implementation project(':anrs-impl')
 
     implementation project(':macos')
-    implementation project(':remote-messaging-impl')
-
+    implementation project(':remote-messaging')
     implementation project(':voice-search')
     implementation project(':downloads')
     internalImplementation project(':traces')
