@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 DuckDuckGo
+ * Copyright (c) 2022 DuckDuckGo
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,8 @@ interface RemoteMessagingConfigRepository {
     fun invalidate()
 }
 
-class LocalRemoteMessagingConfigRepository(database: RemoteMessagingDatabase) : RemoteMessagingConfigRepository {
+class LocalRemoteMessagingConfigRepository(database: RemoteMessagingDatabase) :
+    RemoteMessagingConfigRepository {
 
     private val dao: RemoteMessagingConfigDao = database.remoteMessagingConfigDao()
 

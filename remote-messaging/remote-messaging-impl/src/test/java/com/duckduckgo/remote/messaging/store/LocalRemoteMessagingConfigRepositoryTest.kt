@@ -16,6 +16,7 @@
 
 package com.duckduckgo.remote.messaging.store
 
+import com.duckduckgo.remote.messaging.store.expired
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -25,9 +26,10 @@ class LocalRemoteMessagingConfigRepositoryTest {
 
     @Test
     fun whenRemoteConfigTimestampGreaterThan1DayThenConfigExpired() {
-        val remoteMessagingConfig = RemoteMessagingConfig(
+        val remoteMessagingConfig = com.duckduckgo.remote.messaging.store.RemoteMessagingConfig(
             version = 0,
-            evaluationTimestamp = databaseTimestampFormatter().format(LocalDateTime.now().minusDays(2L))
+            evaluationTimestamp = com.duckduckgo.remote.messaging.store.databaseTimestampFormatter()
+                .format(LocalDateTime.now().minusDays(2L))
         )
 
         val expired = remoteMessagingConfig.expired()
@@ -37,9 +39,10 @@ class LocalRemoteMessagingConfigRepositoryTest {
 
     @Test
     fun whenRemoteConfigTimestampLessThan1DayThenConfigIsNotExpired() {
-        val remoteMessagingConfig = RemoteMessagingConfig(
+        val remoteMessagingConfig = com.duckduckgo.remote.messaging.store.RemoteMessagingConfig(
             version = 0,
-            evaluationTimestamp = databaseTimestampFormatter().format(LocalDateTime.now().minusHours(15L))
+            evaluationTimestamp = com.duckduckgo.remote.messaging.store.databaseTimestampFormatter()
+                .format(LocalDateTime.now().minusHours(15L))
         )
 
         val expired = remoteMessagingConfig.expired()
